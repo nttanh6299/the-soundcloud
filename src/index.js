@@ -1,8 +1,9 @@
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.scss';
+import App from './App';
 
-const App = () => <div>Hello React</div>;
+import './index.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));

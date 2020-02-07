@@ -6,7 +6,7 @@ const autoprefixer = require('autoprefixer');
 module.exports = merge(common, {
   mode: 'development',
   module: {
-  rules: [
+    rules: [
       {
         test: /\.scss$/,
         use: [
@@ -15,15 +15,15 @@ module.exports = merge(common, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [autoprefixer({ overrideBrowserslist: ['> 1%', 'IE >= 10'] })],
-            },
+              plugins: () => [
+                autoprefixer({ overrideBrowserslist: ['> 1%', 'IE >= 10'] })
+              ]
+            }
           },
           { loader: 'sass-loader' }
         ]
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
-  ]
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })]
 });
