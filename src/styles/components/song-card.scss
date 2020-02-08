@@ -1,0 +1,50 @@
+.song-card {
+  width: 220px;
+  border: 1px solid $gray;
+  margin: 10px;
+}
+
+.song-card__inner {
+  padding: 10px;
+}
+
+.song-card__artwork {
+  height: 70px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.song-card__body {
+  flex-wrap: nowrap;
+}
+
+.song-card__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.song-card__details {
+  overflow: hidden;
+  flex: 1;
+}
+
+.song-card__title,
+.song-card__username {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: $dark;
+  font-size: 14px;
+}
+
+.song-card__username {
+  color: $darkLighter;
+}

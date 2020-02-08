@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, TOKEN_API } from '../constants/urlApi';
+import { API_URL } from '../constants/urlApi';
 
 // create instance normal
 const customInstance = axios.create({

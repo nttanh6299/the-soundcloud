@@ -1,0 +1,8 @@
+$mobileWidth: 320px;
+$tabletWidth: 768px;
+
+@mixin m-mobile {
+  @media only screen and (min-width: $mobileWidth) and (max-width: $tabletWidth) {
+    @content;
+  }
+}
