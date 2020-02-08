@@ -17,7 +17,7 @@ class InfiniteScroll extends Component {
   onScroll() {
     if (
       window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 50
+      document.body.offsetHeight - 200
     ) {
       const { nextUrl, fetchSongsNext } = this.props;
       fetchSongsNext(nextUrl);
