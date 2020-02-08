@@ -2,6 +2,13 @@
   width: 220px;
   border: 1px solid $gray;
   margin: 10px;
+
+  @include m-mobile {
+    width: 100%;
+    margin: 10px 0;
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .song-card__inner {
@@ -9,11 +16,16 @@
 }
 
 .song-card__artwork {
-  height: 70px;
+  height: 180px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   margin-bottom: 10px;
+  cursor: pointer;
+
+  @include m-mobile {
+    display: none;
+  }
 }
 
 .song-card__body {
@@ -21,13 +33,19 @@
 }
 
 .song-card__avatar {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   margin-right: 10px;
+
+  @include m-mobile {
+    width: 50px;
+    height: 50px;
+    border-radius: 2px;
+  }
 }
 
 .song-card__details {
@@ -43,6 +61,11 @@
   white-space: nowrap;
   color: $dark;
   font-size: 14px;
+  margin-bottom: 2px;
+
+  @include m-mobile {
+    font-size: 12px;
+  }
 }
 
 .song-card__username {
