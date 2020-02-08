@@ -10,10 +10,10 @@ const customInstance = axios.create({
 // config header Authorization each send request
 customInstance.interceptors.request.use(
   config => {
-    config.headers['Content-Type'] = 'application/json;charset=utf-8';
-    if (!config.headers['Authorization']) {
-      config.headers['Authorization'] = `Bearer ${TOKEN_API}`;
-    }
+    // config.headers['Content-Type'] = 'application/json;charset=utf-8';
+    // if (!config.headers['Authorization']) {
+    //   config.headers['Authorization'] = `Bearer ${TOKEN_API}`;
+    // }
     return config;
   },
   error => Promise.reject(error)
