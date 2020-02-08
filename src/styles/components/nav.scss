@@ -18,15 +18,17 @@
 }
 
 .nav__logo__icon {
-  display: inline-block;
+  display: block;
+  width: 40px;
+  margin: 0 auto;
   font-size: 30px;
   color: $white;
-  margin-right: 15px;
 }
 
 .nav__logo__text {
   display: flex;
   align-items: center;
+  margin-left: 10px;
   font-size: 22px;
   letter-spacing: -1px;
   color: $white;
