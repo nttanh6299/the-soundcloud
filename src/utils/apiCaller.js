@@ -1,4 +1,5 @@
 import axios from 'axios';
+import camelize from 'camelize';
 import { API_URL } from '../constants/urlApi';
 
 // create instance normal
@@ -21,7 +22,7 @@ customInstance.interceptors.request.use(
 
 // handle response request
 customInstance.interceptors.response.use(
-  response => response.data,
+  response => camelize(response.data),
   error => {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx

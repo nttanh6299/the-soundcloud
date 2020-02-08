@@ -4,8 +4,8 @@ import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
 
 const SongCard = ({ song }) => {
-  const { id, title, artwork_url, user } = song;
-  const { avatar_url, username } = user;
+  const { id, title, artworkUrl, user } = song;
+  const { avatarUrl, username } = user;
 
   return (
     <div className="song-card">
@@ -13,17 +13,14 @@ const SongCard = ({ song }) => {
         <div
           className="song-card__artwork"
           style={{
-            backgroundImage: `url(${getImageUrl(
-              artwork_url,
-              IMAGE_SIZE.LARGE
-            )})`
+            backgroundImage: `url(${getImageUrl(artworkUrl, IMAGE_SIZE.LARGE)})`
           }}
         ></div>
         <div className="song-card__body row">
           <div
             className="song-card__avatar"
             style={{
-              backgroundImage: `url(${getImageUrl(avatar_url)})`
+              backgroundImage: `url(${getImageUrl(avatarUrl)})`
             }}
           ></div>
           <div className="song-card__details">
