@@ -3,8 +3,7 @@
     "react"
   ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
   "rules": {
     "no-unused-vars": 1,
@@ -17,13 +16,7 @@
     "no-extra-boolean-cast": 0,
     "default-case": 1,
     "eqeqeq": 1,
-    "no-multi-spaces": 1,
-    "react/no-find-dom-node": 2,
-    "react/no-direct-mutation-state": 1,
-		"react/prop-types": 0,
-		"react/no-is-mounted": 1,
-		"react/no-redundant-should-component-update": 2,
-		"react/no-unused-state": 1
+    "no-multi-spaces": 1
   },
   "parserOptions": {
     "ecmaVersion": 6,
