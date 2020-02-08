@@ -20,7 +20,7 @@ export default function songsReducer(state = initialState, action) {
       return {
         ...state,
         fetching: false,
-        songs: action.songs,
+        songs: [...new Set([...state.songs, ...action.songs])],
         nextUrl: action.nextUrl
       };
     default:

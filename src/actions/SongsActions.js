@@ -19,5 +19,16 @@ export const fetchSongs = (url, params = null) => async dispatch => {
     const response = await fetchApi(url, 'GET', null, params);
 
     dispatch(fetchSongsSuccess(response.collection, response.nextHref));
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchSongsNext = url => (dispatch, getState) => {
+  const state = getState();
+  const fetching = state.songs.fetching;
+
+  if (!fetching) {
+    dispatch(fetchSongs(url));
+  }
 };
