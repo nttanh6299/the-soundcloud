@@ -1,5 +1,5 @@
 .song-card {
-  width: 220px;
+  width: 205px;
   border: 1px solid $gray;
   margin: 10px;
 
@@ -19,7 +19,7 @@
   height: 180px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
   margin-bottom: 10px;
   cursor: pointer;
 
