@@ -13,16 +13,10 @@ const fetchSongsSuccess = (songs, nextUrl) => ({
   nextUrl
 });
 
-export const fetchSongs = () => async dispatch => {
+export const fetchSongs = (url, params = null) => async dispatch => {
   try {
     dispatch(fetchSongsRequest());
-    const response = await fetchApi('/tracks', 'GET', null, {
-      client_id: TOKEN_API,
-      tags: 'house',
-      linked_partitioning: 1,
-      limit: 25,
-      offset: 0
-    });
+    const response = await fetchApi(url, 'GET', null, params);
 
     dispatch(fetchSongsSuccess(response.collection, response.nextHref));
   } catch (err) {}
