@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import Nav from './components/nav.js';
 import Songs from './components/songs';
 
-import { fetchApi } from './utils/apiCaller';
-import { TOKEN_API } from './constants/urlApi';
+import { fetchSongs } from './actions/SongsActions';
 
-const defaultState = {
-  state: {
-    collection: [],
-    nextUrl: ''
-  },
-  fetching: true
-};
+import { connect } from 'react-redux';
 
-const App = () => {
-  const [state, setState] = useState(defaultState.state);
-  const [fetching, setFetching] = useState(defaultState.fetching);
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchSongs();
+  }
 
-  useEffect(() => {
-    fetchApi('/tracks', 'GET', null, {
-      client_id: TOKEN_API,
-      tags: 'house',
-      linked_partitioning: 1
-    }).then(res => {
-      setState(res);
-      setFetching(false);
-    });
-  }, []);
+  render() {
+    const { temp } = this.props;
+    const { songs, fetching } = temp;
 
-  return (
-    <div>
-      <Nav />
-      {/* <ul>
+    return (
+      <div>
+        <Nav />
+        {/* <ul>
         {state.collection &&
           state.collection.map((s, index) => <li key={index}>{s.id}</li>)}
       </ul> */}
-      <Songs songs={state.collection} loading={fetching} />
-    </div>
-  );
+        <Songs songs={songs} loading={fetching} />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    temp: state.songs
+  };
 };
 
-export default App;
+export default connect(mapStateToProps, { fetchSongs })(App);
