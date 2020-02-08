@@ -1,5 +1,6 @@
 import React from 'react';
 import { getImageUrl } from '../utils/helpers/getImageUrl';
+import { formatTitle } from '../utils/helpers/formatTitle';
 import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
 
@@ -25,7 +26,7 @@ const SongCard = ({ song }) => {
           ></div>
           <div className="song-card__details">
             <Link className="song-card__title" to="/" title={title}>
-              {title}
+              {formatTitle(title)}
             </Link>
             <Link className="song-card__username" to="/" title={username}>
               {username}
