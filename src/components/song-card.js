@@ -1,9 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getImageUrl } from '../utils/helpers/getImageUrl';
 import { formatTitle } from '../utils/helpers/formatTitle';
 import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
 import ArtworkPlay from './artwork-play';
+
+const propTypes = {
+  song: PropTypes.shape({}),
+  playingSongId: PropTypes.number,
+  isPlaying: PropTypes.bool.isRequired,
+  playSong: PropTypes.func.isRequired,
+  pauseSong: PropTypes.func.isRequired
+};
 
 const SongCard = ({ song, playingSongId, playSong, pauseSong, isPlaying }) => {
   const { id, title, artworkUrl, user } = song;
@@ -48,5 +57,7 @@ const SongCard = ({ song, playingSongId, playSong, pauseSong, isPlaying }) => {
     </div>
   );
 };
+
+SongCard.propTypes = propTypes;
 
 export default SongCard;

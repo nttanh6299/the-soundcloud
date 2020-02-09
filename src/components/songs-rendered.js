@@ -1,5 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SongCard from './song-card';
+
+const propTypes = {
+  songs: PropTypes.arrayOf(PropTypes.shape({})),
+  playingSongId: PropTypes.number,
+  isPlaying: PropTypes.bool.isRequired,
+  playSong: PropTypes.func.isRequired,
+  pauseSong: PropTypes.func.isRequired
+};
 
 const SongsRendered = ({
   songs,
@@ -24,5 +33,7 @@ const SongsRendered = ({
     </div>
   );
 };
+
+SongsRendered.propTypes = propTypes;
 
 export default SongsRendered;

@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  nextUrl: PropTypes.string,
+  fetchSongsNext: PropTypes.func.isRequired
+};
 
 class InfiniteScroll extends Component {
   constructor(props) {
@@ -30,5 +38,7 @@ class InfiniteScroll extends Component {
     return <div className={className}>{children}</div>;
   }
 }
+
+InfiniteScroll.propTypes = propTypes;
 
 export default InfiniteScroll;

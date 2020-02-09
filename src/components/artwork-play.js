@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  songId: PropTypes.number,
+  playingSongId: PropTypes.number,
+  isPlaying: PropTypes.bool.isRequired,
+  playSong: PropTypes.func.isRequired,
+  pauseSong: PropTypes.func.isRequired
+};
 
 class ArtworkPlay extends Component {
   constructor(props) {
@@ -40,5 +49,7 @@ class ArtworkPlay extends Component {
     );
   }
 }
+
+ArtworkPlay.propTypes = propTypes;
 
 export default ArtworkPlay;

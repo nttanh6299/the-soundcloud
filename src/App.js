@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Nav from './components/nav.js';
 import Songs from './components/songs';
 
@@ -11,8 +12,17 @@ import {
 import { TOKEN_API } from './constants/urlApi';
 import { connect } from 'react-redux';
 
+const propTypes = {
+  fetchSongs: PropTypes.func.isRequired,
+  fetchSongsNext: PropTypes.func.isRequired,
+  playSong: PropTypes.func.isRequired,
+  pauseSong: PropTypes.func.isRequired,
+  songsData: PropTypes.shape({}).isRequired
+};
+
 class App extends Component {
   componentDidMount() {
+    const { fetchSongs } = this.props;
     const params = {
       client_id: TOKEN_API,
       tags: 'house',
@@ -20,12 +30,12 @@ class App extends Component {
       limit: 25,
       offset: 0
     };
-    this.props.fetchSongs('/tracks', params);
+    fetchSongs('/tracks', params);
   }
 
   render() {
-    const { temp, fetchSongsNext, playSong, pauseSong } = this.props;
-    const { songs, fetching, nextUrl, playingSongId, isPlaying } = temp;
+    const { songsData, fetchSongsNext, playSong, pauseSong } = this.props;
+    const { songs, fetching, nextUrl, playingSongId, isPlaying } = songsData;
 
     return (
       <div>
@@ -45,9 +55,11 @@ class App extends Component {
   }
 }
 
+App.propTypes = propTypes;
+
 const mapStateToProps = state => {
   return {
-    temp: state.songs
+    songsData: state.songs
   };
 };
 
