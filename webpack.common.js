@@ -5,7 +5,17 @@ const dotenv = require('dotenv').config({ path: '.env' });
 module.exports = {
   entry: {
     main: './src/index.js',
-    vendor: ['react', 'react-dom', 'axios']
+    vendor: [
+      'react',
+      'react-dom',
+      'axios',
+      'camelize',
+      'prop-types',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'react-router-dom'
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
