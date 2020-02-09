@@ -11,6 +11,10 @@
   }
 }
 
+.song-card--active {
+  border: 1px solid $dark;
+}
+
 .song-card__inner {
   padding: 10px;
 

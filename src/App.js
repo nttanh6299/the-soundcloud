@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import Nav from './components/nav.js';
 import Songs from './components/songs';
 
-import { fetchSongs, fetchSongsNext } from './actions/SongsActions';
+import {
+  fetchSongs,
+  fetchSongsNext,
+  playSong,
+  pauseSong
+} from './actions/SongsActions';
 import { TOKEN_API } from './constants/urlApi';
 import { connect } from 'react-redux';
 
@@ -19,8 +24,8 @@ class App extends Component {
   }
 
   render() {
-    const { temp, fetchSongsNext } = this.props;
-    const { songs, fetching, nextUrl } = temp;
+    const { temp, fetchSongsNext, playSong, pauseSong } = this.props;
+    const { songs, fetching, nextUrl, playingSongId, isPlaying } = temp;
 
     return (
       <div>
@@ -30,6 +35,10 @@ class App extends Component {
           songs={songs}
           loading={fetching}
           fetchSongsNext={fetchSongsNext}
+          playingSongId={playingSongId}
+          playSong={playSong}
+          pauseSong={pauseSong}
+          isPlaying={isPlaying}
         />
       </div>
     );
@@ -42,4 +51,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchSongs, fetchSongsNext })(App);
+export default connect(mapStateToProps, {
+  fetchSongs,
+  fetchSongsNext,
+  playSong,
+  pauseSong
+})(App);

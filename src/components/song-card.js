@@ -5,12 +5,14 @@ import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
 import ArtworkPlay from './artwork-play';
 
-const SongCard = ({ song }) => {
+const SongCard = ({ song, playingSongId, playSong, pauseSong, isPlaying }) => {
   const { id, title, artworkUrl, user } = song;
   const { avatarUrl, username } = user;
 
   return (
-    <div className="song-card">
+    <div
+      className={`song-card ${playingSongId === id ? 'song-card--active' : ''}`}
+    >
       <div className="song-card__inner">
         <div
           className="song-card__artwork"
@@ -18,7 +20,13 @@ const SongCard = ({ song }) => {
             backgroundImage: `url(${getImageUrl(artworkUrl, IMAGE_SIZE.LARGE)})`
           }}
         >
-          <ArtworkPlay />
+          <ArtworkPlay
+            playSong={playSong}
+            pauseSong={pauseSong}
+            playingSongId={playingSongId}
+            songId={id}
+            isPlaying={isPlaying}
+          />
         </div>
         <div className="song-card__body row">
           <div

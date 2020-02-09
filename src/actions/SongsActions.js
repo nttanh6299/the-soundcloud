@@ -1,6 +1,8 @@
 import {
   FETCH_SONGS_REQUEST,
-  FETCH_SONGS_SUCCESS
+  FETCH_SONGS_SUCCESS,
+  PLAY_SONG,
+  PAUSE_SONG
 } from '../constants/ActionTypes';
 import { fetchApi } from '../utils/apiCaller';
 import { TOKEN_API } from '../constants/urlApi';
@@ -32,3 +34,7 @@ export const fetchSongsNext = url => (dispatch, getState) => {
     dispatch(fetchSongs(url));
   }
 };
+
+export const playSong = songId => ({ type: PLAY_SONG, songId });
+
+export const pauseSong = () => ({ type: PAUSE_SONG });
