@@ -3,6 +3,7 @@ import { getImageUrl } from '../utils/helpers/getImageUrl';
 import { formatTitle } from '../utils/helpers/formatTitle';
 import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
+import ArtworkPlay from './artwork-play';
 
 const SongCard = ({ song }) => {
   const { id, title, artworkUrl, user } = song;
@@ -16,7 +17,9 @@ const SongCard = ({ song }) => {
           style={{
             backgroundImage: `url(${getImageUrl(artworkUrl, IMAGE_SIZE.LARGE)})`
           }}
-        ></div>
+        >
+          <ArtworkPlay />
+        </div>
         <div className="song-card__body row">
           <div
             className="song-card__avatar"
