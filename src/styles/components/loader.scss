@@ -14,6 +14,11 @@
   & + & {
     margin-left: 4px;
   }
+
+  @include m-mobile {
+    height: 30px;
+    width: 4px;
+  }
 }
 
 .loader__rect--2 {
