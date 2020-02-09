@@ -17,7 +17,13 @@ $orange: #fe5000;
   box-sizing: border-box;
 }
 
-*:not(i) {
+body {
+  font-family: monospace;
+}
+
+input,
+textarea,
+button {
   font-family: monospace;
 }
 
