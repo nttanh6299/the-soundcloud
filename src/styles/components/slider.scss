@@ -1,0 +1,41 @@
+.slider {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+}
+
+.slider__bar {
+  width: 100%;
+  height: 4px;
+  background-color: $gray;
+  cursor: pointer;
+
+  &:hover {
+    .slider__handle {
+      opacity: 1;
+    }
+  }
+}
+
+.slider__bar__fill {
+  position: relative;
+  height: 100%;
+  background-color: $dark;
+}
+
+.slider__handle {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: $white;
+  border: 1px solid $gray;
+  cursor: pointer;
+  transition: 0.2s;
+  opacity: 0;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from './components/nav.js';
 import Songs from './components/songs';
+import Player from './components/player';
 
 import {
   fetchSongs,
@@ -50,6 +51,7 @@ class App extends Component {
           pauseSong={pauseSong}
           isPlaying={isPlaying}
         />
+        <Player song={songs} />
       </div>
     );
   }
