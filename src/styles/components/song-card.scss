@@ -40,7 +40,7 @@
 }
 
 .song-card__body {
-  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .song-card__avatar {
