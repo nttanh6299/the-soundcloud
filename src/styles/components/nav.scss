@@ -2,12 +2,14 @@
   background-color: $dark;
   color: $dark;
   padding: $ruler * 1.2;
+  width: 100%;
+  overflow: hidden;
 }
 
 .nav__inner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   height: 100%;
 }
