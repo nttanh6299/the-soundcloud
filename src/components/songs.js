@@ -27,7 +27,7 @@ const Songs = ({
 }) => {
   return (
     <InfiniteScroll fetchSongsNext={fetchSongsNext} nextUrl={nextUrl}>
-      <div className="songs container">
+      <div className="songs songs--gray container">
         <SongsRendered
           songs={songs}
           playingSongId={playingSongId}
