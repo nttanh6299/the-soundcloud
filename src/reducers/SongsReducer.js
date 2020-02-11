@@ -2,6 +2,7 @@ import {
   FETCH_SONGS_REQUEST,
   FETCH_SONGS_SUCCESS
 } from '../constants/ActionTypes';
+import { removeDuplicateBy } from '../utils/helpers/removeDuplicateBy';
 
 const initialState = {
   fetching: false,
@@ -20,7 +21,7 @@ export default function songsReducer(state = initialState, action) {
       return {
         ...state,
         fetching: false,
-        items: [...new Set([...state.items, ...action.items])],
+        items: removeDuplicateBy([...state.items, ...action.items], 'id'),
         nextUrl: action.nextUrl
       };
     default:
