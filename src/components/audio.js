@@ -19,10 +19,19 @@ const audio = InnerComponent => {
 
       this.onPlay = this.onPlay.bind(this);
       this.onPause = this.onPause.bind(this);
-      this.onTogglePlay = this.onTogglePlay.bind(this);
       this.onLoadStart = this.onLoadStart.bind(this);
       this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
       this.onTimeUpdate = this.onTimeUpdate.bind(this);
+      this.togglePlay = this.togglePlay.bind(this);
+      this.changeCurrentTime = this.changeCurrentTime.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+      const { audio, props } = this;
+      const { audioUrl } = props;
+      if (audioUrl !== prevProps.audioUrl) {
+        audio.play();
+      }
     }
 
     onLoadStart() {
@@ -56,13 +65,17 @@ const audio = InnerComponent => {
       onPause();
     }
 
-    onTogglePlay() {
+    togglePlay() {
       const { audio } = this;
       if (audio.paused) {
         audio.play();
       } else {
         audio.pause();
       }
+    }
+
+    changeCurrentTime() {
+      console.log('change current time');
     }
 
     render() {
@@ -80,9 +93,12 @@ const audio = InnerComponent => {
             onTimeUpdate={this.onTimeUpdate}
             onPlay={this.onPlay}
             onPause={this.onPause}
-            autoPlay
           />
-          <InnerComponent {...this.props} togglePlay={this.onTogglePlay} />
+          <InnerComponent
+            {...this.props}
+            togglePlay={this.togglePlay}
+            changeCurrentTime={this.changeCurrentTime}
+          />
         </div>
       );
     }
