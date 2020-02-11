@@ -1,17 +1,14 @@
 import {
   FETCH_SONGS_REQUEST,
-  FETCH_SONGS_SUCCESS,
-  PLAY_SONG,
-  PAUSE_SONG
+  FETCH_SONGS_SUCCESS
 } from '../constants/ActionTypes';
 import { fetchApi } from '../utils/apiCaller';
-import { TOKEN_API } from '../constants/urlApi';
 
 const fetchSongsRequest = () => ({ type: FETCH_SONGS_REQUEST });
 
-const fetchSongsSuccess = (songs, nextUrl) => ({
+const fetchSongsSuccess = (items, nextUrl) => ({
   type: FETCH_SONGS_SUCCESS,
-  songs,
+  items,
   nextUrl
 });
 
@@ -34,7 +31,3 @@ export const fetchSongsNext = url => (dispatch, getState) => {
     dispatch(fetchSongs(url));
   }
 };
-
-export const playSong = songId => ({ type: PLAY_SONG, songId });
-
-export const pauseSong = () => ({ type: PAUSE_SONG });

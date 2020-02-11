@@ -8,20 +8,18 @@ import ArtworkPlay from './artwork-play';
 
 const propTypes = {
   song: PropTypes.shape({}),
-  playingSongId: PropTypes.number,
+  playingSong: PropTypes.bool,
+  songIndex: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired,
-  pauseSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired
 };
 
-const SongCard = ({ song, playingSongId, playSong, pauseSong, isPlaying }) => {
-  const { id, title, artworkUrl, user } = song;
+const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
+  const { title, artworkUrl, user } = song;
   const { avatarUrl, username } = user;
 
   return (
-    <div
-      className={`song-card ${playingSongId === id ? 'song-card--active' : ''}`}
-    >
+    <div className={`song-card ${playingSong ? 'song-card--active' : ''}`}>
       <div className="song-card__inner">
         <div
           className="song-card__artwork"
@@ -30,11 +28,10 @@ const SongCard = ({ song, playingSongId, playSong, pauseSong, isPlaying }) => {
           }}
         >
           <ArtworkPlay
-            playSong={playSong}
-            pauseSong={pauseSong}
-            playingSongId={playingSongId}
-            songId={id}
+            playingSong={playingSong}
+            songIndex={songIndex}
             isPlaying={isPlaying}
+            playSong={playSong}
           />
         </div>
         <div className="song-card__body row">

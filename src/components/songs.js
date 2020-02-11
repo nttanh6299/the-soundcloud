@@ -1,47 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from './loader';
 import SongsRendered from './songs-rendered';
 import InfiniteScroll from './infinite-scroll';
+import { TOKEN_API } from '../constants/urlApi';
 
 const propTypes = {
-  fetchSongsNext: PropTypes.func.isRequired,
-  playSong: PropTypes.func.isRequired,
-  pauseSong: PropTypes.func.isRequired,
   nextUrl: PropTypes.string,
-  songs: PropTypes.arrayOf(PropTypes.shape({})),
+  items: PropTypes.arrayOf(PropTypes.shape({})),
+  fetching: PropTypes.bool.isRequired,
+  fetchSongsNext: PropTypes.func.isRequired,
   playingSongId: PropTypes.number,
-  loading: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired,
+  playSong: PropTypes.func.isRequired,
+  fetchSongs: PropTypes.func.isRequired
 };
 
-const Songs = ({
-  nextUrl,
-  songs,
-  loading,
-  fetchSongsNext,
-  playingSongId,
-  playSong,
-  pauseSong,
-  isPlaying
-}) => {
-  return (
-    <InfiniteScroll fetchSongsNext={fetchSongsNext} nextUrl={nextUrl}>
-      <div className="songs songs--gray">
-        <div className="container">
-          <SongsRendered
-            songs={songs}
-            playingSongId={playingSongId}
-            playSong={playSong}
-            pauseSong={pauseSong}
-            isPlaying={isPlaying}
-          />
+class Songs extends Component {
+  componentDidMount() {
+    const { fetchSongs } = this.props;
+    const params = {
+      client_id: TOKEN_API,
+      tags: 'house',
+      linked_partitioning: 1,
+      limit: 25,
+      offset: 0
+    };
+    fetchSongs('/tracks', params);
+  }
+
+  render() {
+    const {
+      nextUrl,
+      items,
+      fetching,
+      fetchSongsNext,
+      playingSongId,
+      isPlaying,
+      playSong
+    } = this.props;
+
+    return (
+      <InfiniteScroll fetchSongsNext={fetchSongsNext} nextUrl={nextUrl}>
+        <div className="songs songs--gray">
+          <div className="container">
+            <SongsRendered
+              songs={items}
+              playingSongId={playingSongId}
+              isPlaying={isPlaying}
+              playSong={playSong}
+            />
+          </div>
+          <Loader loading={fetching} />
         </div>
-        <Loader loading={loading} />
-      </div>
-    </InfiniteScroll>
-  );
-};
+      </InfiniteScroll>
+    );
+  }
+}
 
 Songs.propTypes = propTypes;
 

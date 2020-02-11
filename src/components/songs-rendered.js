@@ -6,17 +6,10 @@ const propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({})),
   playingSongId: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired,
-  pauseSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired
 };
 
-const SongsRendered = ({
-  songs,
-  playingSongId,
-  playSong,
-  pauseSong,
-  isPlaying
-}) => {
+const SongsRendered = ({ songs, playingSongId, isPlaying, playSong }) => {
   return (
     <div className="row row--hoz-center">
       {songs &&
@@ -24,10 +17,10 @@ const SongsRendered = ({
           <SongCard
             key={index}
             song={song}
-            playingSongId={playingSongId}
-            playSong={playSong}
-            pauseSong={pauseSong}
+            songIndex={index}
+            playingSong={playingSongId === song.id}
             isPlaying={isPlaying}
+            playSong={playSong}
           />
         ))}
     </div>

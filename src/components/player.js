@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom';
 import Slider from './slider';
 
 const Player = ({ song }) => {
-  if (song.length === 0) {
+  if (!song) {
     return null;
   }
 
   const {
-    id,
     title,
     artworkUrl,
     user: { username }
-  } = song[0];
+  } = song;
   return (
     <div className="player">
       <div className="player__inner container">

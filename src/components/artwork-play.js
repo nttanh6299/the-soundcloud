@@ -2,53 +2,40 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  songId: PropTypes.number,
-  playingSongId: PropTypes.number,
+  songIndex: PropTypes.number,
+  playingSong: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired,
-  pauseSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired
 };
 
-class ArtworkPlay extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onPlaySong = this.onPlaySong.bind(this);
-    this.onPauseSong = this.onPauseSong.bind(this);
+const ArtworkPlay = ({ songIndex, playingSong, isPlaying, playSong }) => {
+  function onTogglePlay() {
+    const audio = document.getElementById('audio');
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
   }
 
-  onPlaySong() {
-    this.props.playSong(this.props.songId);
+  function onPlaySong() {
+    playSong(songIndex);
   }
 
-  onPauseSong() {
-    this.props.pauseSong();
-  }
-
-  render() {
-    const { songId, playingSongId, isPlaying } = this.props;
-
-    return (
-      <div
-        className={`artwork-play ${
-          songId === playingSongId ? ' artwork-play--active' : ''
+  return (
+    <div
+      className={`artwork-play ${playingSong ? ' artwork-play--active' : ''}`}
+      onClick={playingSong ? onTogglePlay : onPlaySong}
+      role="button"
+    >
+      <i
+        className={`artwork-play__icon fas fa-${
+          playingSong && isPlaying ? 'pause' : 'play'
         }`}
-        onClick={
-          songId === playingSongId && isPlaying
-            ? this.onPauseSong
-            : this.onPlaySong
-        }
-        role="button"
-      >
-        <i
-          className={`artwork-play__icon fas fa-${
-            songId === playingSongId && isPlaying ? 'pause' : 'play'
-          }`}
-        ></i>
-      </div>
-    );
-  }
-}
+      ></i>
+    </div>
+  );
+};
 
 ArtworkPlay.propTypes = propTypes;
 
