@@ -8,3 +8,6 @@ export const ON_PLAY = 'ON_PLAY';
 export const ON_PAUSE = 'ON_PAUSE';
 export const ON_TOGGLE_REPEAT = 'ON_TOGGLE_REPEAT';
 export const ON_TOGGLE_SHUFFLE = 'ON_TOGGLE_SHUFFLE';
+export const ON_LOAD_START = 'ON_LOAD_START';
+export const ON_LOADED_METADATA = 'ON_LOADED_METADATA';
+export const ON_TIME_UPDATE = 'ON_TIME_UPDATE';

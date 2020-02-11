@@ -67,6 +67,10 @@
   }
 }
 
+.player__button--active {
+  color: $orange;
+}
+
 .player__song {
   display: flex;
   align-items: center;

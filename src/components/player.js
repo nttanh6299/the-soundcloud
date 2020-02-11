@@ -3,14 +3,23 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from './slider';
 import audio from './audio';
+import { formatSeconds } from '../utils/helpers/formatSeconds';
 
 const propTypes = {
   player: PropTypes.shape({}).isRequired,
   song: PropTypes.shape({}),
-  togglePlay: PropTypes.func.isRequired
+  togglePlay: PropTypes.func.isRequired,
+  onToggleRepeat: PropTypes.func.isRequired,
+  onToggleShuffle: PropTypes.func.isRequired
 };
 
-const Player = ({ player, song, togglePlay }) => {
+const Player = ({
+  player,
+  song,
+  togglePlay,
+  onToggleRepeat,
+  onToggleShuffle
+}) => {
   if (!song) {
     return null;
   }
@@ -20,7 +29,7 @@ const Player = ({ player, song, togglePlay }) => {
     artworkUrl,
     user: { username }
   } = song;
-  const { isPlaying } = player;
+  const { isPlaying, repeat, shuffle, duration, currentPlayingTime } = player;
   return (
     <div className="player">
       <div className="player__inner container">
@@ -35,22 +44,34 @@ const Player = ({ player, song, togglePlay }) => {
             <div className="player__button">
               <i className="fas fa-forward"></i>
             </div>
-            <div className="player__button">
+            <div
+              className={`player__button ${
+                shuffle ? 'player__button--active' : ''
+              }`}
+              onClick={onToggleShuffle}
+            >
               <i className="fas fa-random"></i>
             </div>
-            <div className="player__button">
+            <div
+              className={`player__button ${
+                repeat ? 'player__button--active' : ''
+              }`}
+              onClick={onToggleRepeat}
+            >
               <i className="fas fa-redo"></i>
             </div>
           </div>
         </div>
         <div className="player__section player__section--time">
-          <div className="player__time">0:00</div>
+          <div className="player__time">
+            {formatSeconds(currentPlayingTime)}
+          </div>
         </div>
         <div className="player__section player__section--slider">
           <Slider />
         </div>
         <div className="player__section player__section--time">
-          <div className="player__time">3:23</div>
+          <div className="player__time">{formatSeconds(duration)}</div>
         </div>
         <div className="player__section player__section__toggle-volume">
           <div className="player__button">

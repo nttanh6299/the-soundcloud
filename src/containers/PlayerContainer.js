@@ -2,7 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Player from '../components/player';
 import { getAudioUrl, getSong } from '../selectors/PlayerSelector';
-import { onPlay, onPause } from '../actions/PlayerActions';
+import {
+  onPlay,
+  onPause,
+  onToggleRepeat,
+  onToggleShuffle,
+  onLoadStart,
+  onLoadedMetadata,
+  onTimeUpdate
+} from '../actions/PlayerActions';
 
 const PlayerContainer = props => <Player {...props} />;
 
@@ -18,5 +26,10 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   onPlay,
-  onPause
+  onPause,
+  onToggleRepeat,
+  onToggleShuffle,
+  onLoadStart,
+  onLoadedMetadata,
+  onTimeUpdate
 })(PlayerContainer);

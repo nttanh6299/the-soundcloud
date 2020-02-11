@@ -3,11 +3,15 @@ import {
   ON_PLAY,
   ON_PAUSE,
   ON_TOGGLE_REPEAT,
-  ON_TOGGLE_SHUFFLE
+  ON_TOGGLE_SHUFFLE,
+  ON_LOAD_START,
+  ON_LOADED_METADATA,
+  ON_TIME_UPDATE
 } from '../constants/ActionTypes';
 
 const initialState = {
-  currentTimePlaying: 0,
+  currentPlayingTime: 0,
+  duration: 0,
   isPlaying: false,
   playingSongIndex: -1,
   muted: false,
@@ -23,6 +27,17 @@ export default function playerReducer(state = initialState, action) {
         ...state,
         playingSongIndex: action.songIndex,
         isPlaying: true
+      };
+    case ON_LOAD_START:
+      return {
+        ...state,
+        currentPlayingTime: 0,
+        duration: 0
+      };
+    case ON_LOADED_METADATA:
+      return {
+        ...state,
+        duration: action.duration
       };
     case ON_PLAY:
       return {
@@ -43,6 +58,11 @@ export default function playerReducer(state = initialState, action) {
       return {
         ...state,
         shuffle: !state.shuffle
+      };
+    case ON_TIME_UPDATE:
+      return {
+        ...state,
+        currentPlayingTime: action.currentTime
       };
     default:
       return state;
