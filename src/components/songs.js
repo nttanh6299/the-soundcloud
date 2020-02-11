@@ -21,9 +21,9 @@ class Songs extends Component {
     const { fetchSongs } = this.props;
     const params = {
       client_id: TOKEN_API,
-      tags: 'house',
       linked_partitioning: 1,
-      limit: 25,
+      tags: 'house',
+      limit: 50,
       offset: 0
     };
     fetchSongs('/tracks', params);

@@ -1,19 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Songs from '../components/songs';
-import {
-  getSongs,
-  getPlayingSongId,
-  getIsPlaying
-} from '../selectors/CommonSelectors';
+import { getPlayingSongId, getIsPlaying } from '../selectors/CommonSelectors';
 import { fetchSongs, fetchSongsNext } from '../actions/SongsActions';
 import { playSong } from '../actions/PlayerActions';
 
 const SongsContainer = props => <Songs {...props} />;
 
 const mapStateToProps = state => {
+  const { songs } = state;
+
   return {
-    ...getSongs(state),
+    ...songs,
     playingSongId: getPlayingSongId(state),
     isPlaying: getIsPlaying(state)
   };
