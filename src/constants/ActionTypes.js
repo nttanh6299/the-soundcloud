@@ -1,6 +1,10 @@
 // SONGS
 export const FETCH_SONGS_REQUEST = 'FETCH_SONGS_REQUEST';
 export const FETCH_SONGS_SUCCESS = 'FETCH_SONGS_SUCCESS';
+
+// PLAYER
 export const PLAY_SONG = 'PLAY_SONG';
 export const ON_PLAY = 'ON_PLAY';
 export const ON_PAUSE = 'ON_PAUSE';
+export const ON_TOGGLE_REPEAT = 'ON_TOGGLE_REPEAT';
+export const ON_TOGGLE_SHUFFLE = 'ON_TOGGLE_SHUFFLE';

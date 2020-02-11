@@ -2,8 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from './slider';
+import audio from './audio';
 
-const Player = ({ song }) => {
+const propTypes = {
+  player: PropTypes.shape({}).isRequired,
+  song: PropTypes.shape({}),
+  togglePlay: PropTypes.func.isRequired
+};
+
+const Player = ({ player, song, togglePlay }) => {
   if (!song) {
     return null;
   }
@@ -13,6 +20,7 @@ const Player = ({ song }) => {
     artworkUrl,
     user: { username }
   } = song;
+  const { isPlaying } = player;
   return (
     <div className="player">
       <div className="player__inner container">
@@ -21,8 +29,8 @@ const Player = ({ song }) => {
             <div className="player__button">
               <i className="fas fa-backward"></i>
             </div>
-            <div className="player__button">
-              <i className="fas fa-pause"></i>
+            <div className="player__button" onClick={togglePlay} role="button">
+              <i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i>
             </div>
             <div className="player__button">
               <i className="fas fa-forward"></i>
@@ -55,7 +63,7 @@ const Player = ({ song }) => {
         <div className="player__section player__section--song">
           <div className="player__song">
             <div
-              className="player__song__artwork"
+              className="player__song__artwork player__song__artwork--circle"
               style={{ backgroundImage: `url(${artworkUrl})` }}
             ></div>
             <div className="player__song__details">
@@ -73,4 +81,6 @@ const Player = ({ song }) => {
   );
 };
 
-export default Player;
+Player.propTypes = propTypes;
+
+export default audio(Player);

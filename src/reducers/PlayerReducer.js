@@ -1,4 +1,10 @@
-import { PLAY_SONG, ON_PLAY, ON_PAUSE } from '../constants/ActionTypes';
+import {
+  PLAY_SONG,
+  ON_PLAY,
+  ON_PAUSE,
+  ON_TOGGLE_REPEAT,
+  ON_TOGGLE_SHUFFLE
+} from '../constants/ActionTypes';
 
 const initialState = {
   currentTimePlaying: 0,
@@ -27,6 +33,16 @@ export default function playerReducer(state = initialState, action) {
       return {
         ...state,
         isPlaying: false
+      };
+    case ON_TOGGLE_REPEAT:
+      return {
+        ...state,
+        repeat: !state.repeat
+      };
+    case ON_TOGGLE_SHUFFLE:
+      return {
+        ...state,
+        shuffle: !state.shuffle
       };
     default:
       return state;

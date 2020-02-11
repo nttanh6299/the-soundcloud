@@ -5,7 +5,7 @@ import { getSongList, getPlayingSongIndex } from './CommonSelectors';
 export const getSong = createSelector(
   getSongList,
   getPlayingSongIndex,
-  (songs, index) => Object.assign({}, songs[index])
+  (songs, index) => songs[index]
 );
 
 export const getAudioUrl = createSelector(getSong, song =>

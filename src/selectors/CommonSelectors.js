@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 //songs
-export const getSongs = state => state.songs;
 export const getSongList = state => state.songs.items;
 
 //player
