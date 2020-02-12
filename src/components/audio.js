@@ -8,7 +8,8 @@ const propTypes = {
   onLoadStart: PropTypes.func.isRequired,
   onLoadedMetadata: PropTypes.func.isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
-  onVolumeChange: PropTypes.func.isRequired
+  onVolumeChange: PropTypes.func.isRequired,
+  playNextSong: PropTypes.func.isRequired
 };
 
 const audio = InnerComponent => {
@@ -24,6 +25,7 @@ const audio = InnerComponent => {
       this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
       this.onTimeUpdate = this.onTimeUpdate.bind(this);
       this.onVolumeChange = this.onVolumeChange.bind(this);
+      this.onEnded = this.onEnded.bind(this);
 
       this.togglePlay = this.togglePlay.bind(this);
       this.toggleMuted = this.toggleMuted.bind(this);
@@ -33,8 +35,12 @@ const audio = InnerComponent => {
 
     componentDidUpdate(prevProps) {
       const { audio, props } = this;
-      const { audioUrl } = props;
-      if (audioUrl !== prevProps.audioUrl) {
+      if (
+        audio.ended &&
+        prevProps.audioUrl === props.audioUrl &&
+        prevProps.player.repeat
+      ) {
+        audio.currentTime = 0;
         audio.play();
       }
     }
@@ -48,6 +54,7 @@ const audio = InnerComponent => {
       const { audio, props } = this;
       const { onLoadedMetadata } = props;
       onLoadedMetadata(Math.floor(audio.duration));
+      audio.play();
     }
 
     onTimeUpdate() {
@@ -75,6 +82,11 @@ const audio = InnerComponent => {
       const { onVolumeChange } = props;
       const { volume, muted } = audio;
       onVolumeChange(volume, muted);
+    }
+
+    onEnded() {
+      const { playNextSong } = this.props;
+      playNextSong();
     }
 
     togglePlay() {
@@ -122,6 +134,7 @@ const audio = InnerComponent => {
             onVolumeChange={this.onVolumeChange}
             onPlay={this.onPlay}
             onPause={this.onPause}
+            onEnded={this.onEnded}
           />
           <InnerComponent
             {...this.props}

@@ -9,6 +9,16 @@ import {
   ON_TIME_UPDATE,
   ON_VOLUME_CHANGE
 } from '../constants/ActionTypes';
+import {
+  getNextIndex,
+  getPrevIndex,
+  getRandomIndex
+} from '../selectors/PlayerSelector';
+import {
+  getShuffle,
+  getRepeat,
+  getPlayingSongIndex
+} from '../selectors/CommonSelectors';
 
 export const playSong = songIndex => ({ type: PLAY_SONG, songIndex });
 
@@ -37,3 +47,35 @@ export const onVolumeChange = (volume, muted) => ({
   volume,
   muted
 });
+
+export const playNextSong = (nextWhileKeepRepeat = false) => (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const shuffle = getShuffle(state);
+  const repeat = getRepeat(state);
+
+  if (repeat && !nextWhileKeepRepeat) {
+    const currentIndex = getPlayingSongIndex(state);
+    dispatch(playSong(currentIndex));
+  } else if (shuffle && !repeat) {
+    const randomIndex = getRandomIndex(state);
+    dispatch(playSong(randomIndex));
+  } else {
+    const nextIndex = getNextIndex(state);
+    dispatch(playSong(nextIndex));
+  }
+};
+
+export const playPrevSong = () => (dispatch, getState) => {
+  const state = getState();
+  const prevIndex = getPrevIndex(state);
+  if (prevIndex !== null) {
+    dispatch(playSong(prevIndex));
+  }
+};
+
+export const playNextSongWhileKeepRepeat = () => dispatch => {
+  dispatch(playNextSong(true));
+};

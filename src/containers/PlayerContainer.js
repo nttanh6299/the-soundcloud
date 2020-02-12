@@ -10,7 +10,10 @@ import {
   onLoadStart,
   onLoadedMetadata,
   onTimeUpdate,
-  onVolumeChange
+  onVolumeChange,
+  playNextSong,
+  playPrevSong,
+  playNextSongWhileKeepRepeat
 } from '../actions/PlayerActions';
 
 const PlayerContainer = props => <Player {...props} />;
@@ -33,5 +36,8 @@ export default connect(mapStateToProps, {
   onLoadStart,
   onLoadedMetadata,
   onTimeUpdate,
-  onVolumeChange
+  onVolumeChange,
+  playNextSong,
+  playPrevSong,
+  playNextSongWhileKeepRepeat
 })(PlayerContainer);
