@@ -56,6 +56,8 @@
 .player__button {
   cursor: pointer;
   color: $dark;
+  width: 30px;
+  text-align: center;
 
   & + & {
     margin-left: 20px;
