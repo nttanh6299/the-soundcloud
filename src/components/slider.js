@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { offsetLeft } from '../utils/helpers/offsetLeft';
 import { preventClick } from '../utils//helpers/preventClick';
+import { DEBOUNCE_TIME } from '../constants/GlobalConstants';
+import { debounce } from 'lodash';
 
 const propTypes = {
   max: PropTypes.number.isRequired,
@@ -14,59 +16,81 @@ class Slider extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      value: 0,
+      isMouseDown: false
+    };
+
     this.slider = null;
 
-    this.onClick = this.onClick.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
+
+    this.setStateDebounce = this.setStateDebounce.bind(this);
+    this.emitChangeDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
+  }
+
+  setStateDebounce(props) {
+    this.setState({ ...props });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { value, isMouseDown } = this.state;
+    if (value !== prevProps.value && !isMouseDown) {
+      this.setState({ value: prevProps.value });
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mousemove', this.onMouseMove);
-    window.removeEventListener('mouseup', this.onMouseUp);
+    const { slider, onMouseMove, onMouseUp } = this;
+    slider.removeEventListener('mousemove', onMouseMove);
+    slider.removeEventListener('mouseup', onMouseUp);
   }
 
-  onClick(e) {
-    const { max, onChange } = this.props;
+  onMouseDown(e) {
+    const { slider, onMouseMove, onMouseUp } = this;
+
+    this.setState({ isMouseDown: true });
+
+    onMouseMove(e);
+
+    slider.addEventListener('mousemove', onMouseMove);
+    slider.addEventListener('mouseup', onMouseUp);
+  }
+
+  onMouseMove(e) {
+    const { max } = this.props;
     const { currentTarget, clientX } = e;
     const left = offsetLeft(currentTarget);
     const value =
       Math.min(Math.max(clientX - left, 0), currentTarget.offsetWidth) /
       currentTarget.offsetWidth;
-
-    onChange(value * max);
-  }
-
-  onMouseDown() {
-    window.addEventListener('mousemove', this.onMouseMove);
-    window.addEventListener('mouseup', this.onMouseUp);
-  }
-
-  onMouseMove(e) {
-    const { slider, props } = this;
-    const { max, onChange } = props;
-    const left = offsetLeft(slider);
-    const value =
-      Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /
-      slider.offsetWidth;
-
-    onChange(value * max);
+    this.setState({ value: value * max });
   }
 
   onMouseUp() {
-    window.removeEventListener('mousemove', this.onMouseMove);
-    window.removeEventListener('mouseup', this.onMouseUp);
+    const { slider, props, onMouseMove, onMouseUp, emitChangeDebounce } = this;
+    const { value } = this.state;
+    const { onChange } = props;
+
+    onChange(value);
+
+    emitChangeDebounce({ isMouseDown: false });
+
+    slider.removeEventListener('mousemove', onMouseMove);
+    slider.removeEventListener('mouseup', onMouseUp);
   }
 
   render() {
-    const { max, value, className } = this.props;
+    const { max, className } = this.props;
+    const { value } = this.state;
     const currentWidth = `${(value / max) * 100}%`;
 
     return (
       <div
         className={`slider ${className ? className : ''}`}
-        onClick={this.onClick}
+        onMouseDown={this.onMouseDown}
         ref={node => (this.slider = node)}
       >
         <div className="slider__bar">
@@ -76,7 +100,6 @@ class Slider extends Component {
                 className="slider__handle"
                 role="button"
                 onClick={preventClick}
-                onMouseDown={this.onMouseDown}
               ></span>
             </div>
           ) : null}

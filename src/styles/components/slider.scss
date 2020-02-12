@@ -15,7 +15,7 @@
 
 .slider__bar {
   width: 100%;
-  height: 4px;
+  height: 3px;
   background-color: $gray;
 }
 
@@ -27,11 +27,11 @@
 
 .slider__handle {
   position: absolute;
-  top: -7px;
-  right: -9px;
+  top: -6px;
+  right: -8px;
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background-color: $white;
   border: 1px solid $gray;

@@ -3,3 +3,5 @@ export const IMAGE_SIZE = {
   LARGE: 't300x300',
   DEFAULT: 'large'
 };
+
+export const DEBOUNCE_TIME = 400;
