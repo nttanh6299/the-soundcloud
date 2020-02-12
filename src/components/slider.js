@@ -61,25 +61,22 @@ class Slider extends Component {
 
   onMouseMove(e) {
     const { slider, props } = this;
-    const { max } = props;
+    const { max, onChange } = props;
     const left = offsetLeft(slider);
     const value =
       Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /
       slider.offsetWidth;
-    this.setState({ value: value * max });
+
+    this.setState({ value: value * max }, () => {
+      onChange(this.state.value);
+    });
   }
 
   onMouseUp() {
-    const { props, onMouseMove, onMouseUp, emitChangeDebounce } = this;
-    const { value } = this.state;
-    const { onChange } = props;
-
-    onChange(value);
-
-    emitChangeDebounce({ isMouseDown: false });
-
+    const { onMouseMove, onMouseUp } = this;
     window.removeEventListener('mousemove', onMouseMove);
     window.removeEventListener('mouseup', onMouseUp);
+    this.emitChangeDebounce({ isMouseDown: false });
   }
 
   render() {
