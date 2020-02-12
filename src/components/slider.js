@@ -43,34 +43,34 @@ class Slider extends Component {
   }
 
   componentWillUnmount() {
-    const { slider, onMouseMove, onMouseUp } = this;
-    slider.removeEventListener('mousemove', onMouseMove);
-    slider.removeEventListener('mouseup', onMouseUp);
+    const { onMouseMove, onMouseUp } = this;
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
   }
 
   onMouseDown(e) {
-    const { slider, onMouseMove, onMouseUp } = this;
+    const { onMouseMove, onMouseUp } = this;
 
     this.setState({ isMouseDown: true });
 
     onMouseMove(e);
 
-    slider.addEventListener('mousemove', onMouseMove);
-    slider.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   }
 
   onMouseMove(e) {
-    const { max } = this.props;
-    const { currentTarget, clientX } = e;
-    const left = offsetLeft(currentTarget);
+    const { slider, props } = this;
+    const { max } = props;
+    const left = offsetLeft(slider);
     const value =
-      Math.min(Math.max(clientX - left, 0), currentTarget.offsetWidth) /
-      currentTarget.offsetWidth;
+      Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /
+      slider.offsetWidth;
     this.setState({ value: value * max });
   }
 
   onMouseUp() {
-    const { slider, props, onMouseMove, onMouseUp, emitChangeDebounce } = this;
+    const { props, onMouseMove, onMouseUp, emitChangeDebounce } = this;
     const { value } = this.state;
     const { onChange } = props;
 
@@ -78,8 +78,8 @@ class Slider extends Component {
 
     emitChangeDebounce({ isMouseDown: false });
 
-    slider.removeEventListener('mousemove', onMouseMove);
-    slider.removeEventListener('mouseup', onMouseUp);
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
   }
 
   render() {
@@ -91,6 +91,7 @@ class Slider extends Component {
       <div
         className={`slider ${className ? className : ''}`}
         onMouseDown={this.onMouseDown}
+        onClick={preventClick}
         ref={node => (this.slider = node)}
       >
         <div className="slider__bar">
