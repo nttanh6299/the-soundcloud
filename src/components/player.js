@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Slider from './slider';
 import audio from './audio';
 import { formatSeconds } from '../utils/helpers/formatSeconds';
+import { formatTitle } from '../utils/helpers/formatTitle';
 import { volumeClassName } from '../utils/helpers/volumeClassName';
 
 const propTypes = {
@@ -111,7 +112,7 @@ const Player = ({
             ></div>
             <div className="player__song__details">
               <Link className="player__song__title" to="/">
-                {title}
+                {formatTitle(title)}
               </Link>
               <Link className="player__song__username" to="/">
                 {username}
