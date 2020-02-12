@@ -14,7 +14,9 @@ module.exports = {
       'react-redux',
       'redux',
       'redux-thunk',
-      'react-router-dom'
+      'react-router-dom',
+      'reselect',
+      'lodash'
     ]
   },
   output: {
