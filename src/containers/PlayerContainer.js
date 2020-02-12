@@ -9,7 +9,8 @@ import {
   onToggleShuffle,
   onLoadStart,
   onLoadedMetadata,
-  onTimeUpdate
+  onTimeUpdate,
+  onVolumeChange
 } from '../actions/PlayerActions';
 
 const PlayerContainer = props => <Player {...props} />;
@@ -31,5 +32,6 @@ export default connect(mapStateToProps, {
   onToggleShuffle,
   onLoadStart,
   onLoadedMetadata,
-  onTimeUpdate
+  onTimeUpdate,
+  onVolumeChange
 })(PlayerContainer);

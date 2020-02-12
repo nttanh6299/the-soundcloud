@@ -6,7 +6,8 @@ import {
   ON_TOGGLE_SHUFFLE,
   ON_LOAD_START,
   ON_LOADED_METADATA,
-  ON_TIME_UPDATE
+  ON_TIME_UPDATE,
+  ON_VOLUME_CHANGE
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
   isPlaying: false,
   playingSongIndex: -1,
   muted: false,
-  volume: 0,
+  volume: 1,
   repeat: false,
   shuffle: false
 };
@@ -63,6 +64,12 @@ export default function playerReducer(state = initialState, action) {
       return {
         ...state,
         currentPlayingTime: action.currentTime
+      };
+    case ON_VOLUME_CHANGE:
+      return {
+        ...state,
+        volume: action.volume,
+        muted: action.muted
       };
     default:
       return state;

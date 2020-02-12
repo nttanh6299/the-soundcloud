@@ -6,7 +6,8 @@ import {
   ON_TOGGLE_REPEAT,
   ON_LOAD_START,
   ON_LOADED_METADATA,
-  ON_TIME_UPDATE
+  ON_TIME_UPDATE,
+  ON_VOLUME_CHANGE
 } from '../constants/ActionTypes';
 
 export const playSong = songIndex => ({ type: PLAY_SONG, songIndex });
@@ -29,4 +30,10 @@ export const onLoadedMetadata = duration => ({
 export const onTimeUpdate = currentTime => ({
   type: ON_TIME_UPDATE,
   currentTime
+});
+
+export const onVolumeChange = (volume, muted) => ({
+  type: ON_VOLUME_CHANGE,
+  volume,
+  muted
 });

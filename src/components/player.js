@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import Slider from './slider';
 import audio from './audio';
 import { formatSeconds } from '../utils/helpers/formatSeconds';
+import { volumeClassName } from '../utils/helpers/volumeClassName';
 
 const propTypes = {
   player: PropTypes.shape({}).isRequired,
   song: PropTypes.shape({}),
   togglePlay: PropTypes.func.isRequired,
+  toggleMuted: PropTypes.func.isRequired,
+  changeCurrentTime: PropTypes.func.isRequired,
+  changeVolume: PropTypes.func.isRequired,
   onToggleRepeat: PropTypes.func.isRequired,
   onToggleShuffle: PropTypes.func.isRequired
 };
@@ -17,6 +21,9 @@ const Player = ({
   player,
   song,
   togglePlay,
+  toggleMuted,
+  changeCurrentTime,
+  changeVolume,
   onToggleRepeat,
   onToggleShuffle
 }) => {
@@ -29,7 +36,16 @@ const Player = ({
     artworkUrl,
     user: { username }
   } = song;
-  const { isPlaying, repeat, shuffle, duration, currentPlayingTime } = player;
+  const {
+    isPlaying,
+    repeat,
+    shuffle,
+    duration,
+    currentPlayingTime,
+    muted,
+    volume
+  } = player;
+
   return (
     <div className="player">
       <div className="player__inner container">
@@ -68,18 +84,24 @@ const Player = ({
           </div>
         </div>
         <div className="player__section player__section--slider">
-          <Slider />
+          <Slider
+            max={duration}
+            value={currentPlayingTime}
+            onChange={changeCurrentTime}
+          />
         </div>
         <div className="player__section player__section--time">
           <div className="player__time">{formatSeconds(duration)}</div>
         </div>
         <div className="player__section player__section__toggle-volume">
-          <div className="player__button">
-            <i className="fas fa-volume-up"></i>
+          <div className="player__button" onClick={toggleMuted}>
+            <i
+              className={`fas fa-volume-${volumeClassName(volume, muted)}`}
+            ></i>
           </div>
         </div>
         <div className="player__section player__section--volume">
-          <Slider />
+          <Slider max={1} value={muted ? 0 : volume} onChange={changeVolume} />
         </div>
         <div className="player__section player__section--song">
           <div className="player__song">

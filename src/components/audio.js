@@ -7,7 +7,8 @@ const propTypes = {
   onPause: PropTypes.func.isRequired,
   onLoadStart: PropTypes.func.isRequired,
   onLoadedMetadata: PropTypes.func.isRequired,
-  onTimeUpdate: PropTypes.func.isRequired
+  onTimeUpdate: PropTypes.func.isRequired,
+  onVolumeChange: PropTypes.func.isRequired
 };
 
 const audio = InnerComponent => {
@@ -22,8 +23,12 @@ const audio = InnerComponent => {
       this.onLoadStart = this.onLoadStart.bind(this);
       this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
       this.onTimeUpdate = this.onTimeUpdate.bind(this);
+      this.onVolumeChange = this.onVolumeChange.bind(this);
+
       this.togglePlay = this.togglePlay.bind(this);
+      this.toggleMuted = this.toggleMuted.bind(this);
       this.changeCurrentTime = this.changeCurrentTime.bind(this);
+      this.changeVolume = this.changeVolume.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -65,7 +70,15 @@ const audio = InnerComponent => {
       onPause();
     }
 
+    onVolumeChange() {
+      const { audio, props } = this;
+      const { onVolumeChange } = props;
+      const { volume, muted } = audio;
+      onVolumeChange(volume, muted);
+    }
+
     togglePlay() {
+      //trigger onPlay/Pause automatically
       const { audio } = this;
       if (audio.paused) {
         audio.play();
@@ -74,8 +87,23 @@ const audio = InnerComponent => {
       }
     }
 
-    changeCurrentTime() {
-      console.log('change current time');
+    toggleMuted() {
+      //trigger onVolumeChange automatically
+      const { audio } = this;
+      audio.muted = !audio.muted;
+    }
+
+    changeCurrentTime(time) {
+      //trigger onTimeUpdate automatically
+      const { audio } = this;
+      audio.currentTime = time;
+    }
+
+    changeVolume(volume) {
+      //trigger onVolumeChange automatically
+      const { audio } = this;
+      audio.muted = false;
+      audio.volume = volume;
     }
 
     render() {
@@ -91,13 +119,16 @@ const audio = InnerComponent => {
             onLoadStart={this.onLoadStart}
             onLoadedMetadata={this.onLoadedMetadata}
             onTimeUpdate={this.onTimeUpdate}
+            onVolumeChange={this.onVolumeChange}
             onPlay={this.onPlay}
             onPause={this.onPause}
           />
           <InnerComponent
             {...this.props}
             togglePlay={this.togglePlay}
+            toggleMuted={this.toggleMuted}
             changeCurrentTime={this.changeCurrentTime}
+            changeVolume={this.changeVolume}
           />
         </div>
       );
