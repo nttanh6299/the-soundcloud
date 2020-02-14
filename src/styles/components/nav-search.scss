@@ -1,12 +1,13 @@
 .nav-search {
   position: relative;
   background-color: $darkLight;
-  font-size: 18px;
+  font-size: $ruler;
   border-radius: $ruler;
   width: 320px;
 
   @include m-mobile {
-    display: none;
+    width: 100%;
+    margin-top: 10px;
   }
 }
 
@@ -23,7 +24,7 @@
 
 .nav-search__input {
   padding: 10px 10px 10px 35px;
-  font-size: 18px;
+  font-size: $ruler;
   width: 100%;
   background-color: transparent;
   color: $white;

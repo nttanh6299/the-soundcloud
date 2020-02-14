@@ -1,6 +1,12 @@
 .songs {
+  margin-top: $height-nav;
   padding: 30px 0;
   overflow-x: auto;
+
+  @include m-mobile {
+    margin-top: $height-nav * 2;
+    padding: 0;
+  }
 }
 
 .songs--gray {

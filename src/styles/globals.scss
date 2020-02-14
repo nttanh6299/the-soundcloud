@@ -7,7 +7,10 @@ $darkLighter: lighten($dark, 25);
 $gray: #ddd;
 
 $white: #fff;
-$orange: #fe5000;
+$orange: #eb772a;
+$orangeDark: lighten($orange, 5);
+
+$height-nav: 50px;
 
 *,
 :before,

@@ -28,5 +28,9 @@
 .artwork-play__icon {
   opacity: 0;
   color: $white;
-  font-size: 20px;
+  font-size: 18px;
+
+  @include m-mobile {
+    font-size: 13px;
+  }
 }

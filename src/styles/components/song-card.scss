@@ -5,14 +5,19 @@
 
   @include m-mobile {
     width: 100%;
-    margin: 10px 0;
-    border-left: 0;
-    border-right: 0;
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid $gray;
   }
 }
 
 .song-card--active {
   border: 1px solid $dark;
+
+  @include m-mobile {
+    border: 0;
+    border-bottom: 1px solid $gray;
+  }
 }
 
 .song-card__inner {
@@ -21,6 +26,7 @@
   @include m-mobile {
     display: flex;
     align-items: center;
+    padding: 0;
   }
 }
 
@@ -32,6 +38,7 @@
   margin-bottom: 10px;
 
   @include m-mobile {
+    background-size: cover;
     width: 50px;
     height: 46px;
     margin: 0 10px 0 0;

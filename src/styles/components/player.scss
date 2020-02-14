@@ -4,6 +4,7 @@
   left: 0;
   bottom: 0;
   background-color: $white;
+  transition: 0.3s;
 
   @include m-mobile {
     background-color: $dark;
@@ -15,7 +16,7 @@
   padding: 10px 0;
 
   @include m-mobile {
-    justify-content: space-between;
+    padding: 6px 0;
   }
 }
 
@@ -26,6 +27,10 @@
   & + & {
     margin-left: 18px;
   }
+
+  @include m-mobile {
+    width: 100%;
+  }
 }
 
 .player__section--slider {
@@ -33,11 +38,15 @@
 }
 
 .player__section--volume {
-  width: 120px;
+  width: 100px;
 }
 
 .player__section--song {
-  width: 350px;
+  width: 320px;
+
+  @include m-mobile {
+    width: 70%;
+  }
 }
 
 .player__section--slider,
@@ -51,6 +60,12 @@
 
 .player__buttons {
   display: flex;
+
+  @include m-mobile {
+    flex: 1;
+    justify-content: flex-end;
+    padding-right: 25px;
+  }
 }
 
 .player__button {
@@ -60,12 +75,16 @@
   text-align: center;
 
   & + & {
-    margin-left: 20px;
+    margin-left: 12px;
   }
 
   @include m-mobile {
     color: $white;
-    margin-left: 20px;
+    width: auto;
+
+    & + & {
+      margin-left: 20px;
+    }
   }
 }
 
@@ -77,6 +96,10 @@
   display: flex;
   align-items: center;
   width: 100%;
+
+  @include m-mobile {
+    order: 1;
+  }
 }
 
 .player__song__artwork {

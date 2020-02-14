@@ -1,9 +1,18 @@
 .nav {
+  height: $height-nav;
   background-color: $dark;
   color: $dark;
-  padding: $ruler * 1.2;
   width: 100%;
+  border: 0;
   overflow: hidden;
+  transition: 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @include m-mobile {
+    height: $height-nav * 2;
+  }
 }
 
 .nav__inner {
@@ -12,17 +21,27 @@
   justify-content: space-between;
   flex-wrap: wrap;
   height: 100%;
+
+  @include m-mobile {
+    padding: 0 $ruler/1.4;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 }
 
 .nav__section {
   display: flex;
   align-items: center;
+
+  @include m-mobile {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .nav__logo__icon {
-  display: block;
-  width: 40px;
-  margin: 0 auto;
+  display: inline-block;
+  text-align: center;
   font-size: 30px;
   color: $white;
 }
@@ -37,5 +56,12 @@
 
   &:hover {
     text-decoration: none;
+  }
+}
+
+@include m-mobile {
+  .nav__logo__icon,
+  .nav__logo__text {
+    font-size: 18px;
   }
 }
