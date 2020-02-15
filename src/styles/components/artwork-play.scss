@@ -9,7 +9,7 @@
   z-index: 1;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.59);
+    background-color: rgba(0, 0, 0, 0.75);
 
     .artwork-play__icon {
       opacity: 1;
@@ -18,7 +18,7 @@
 }
 
 .artwork-play--active {
-  background-color: rgba(0, 0, 0, 0.59);
+  background-color: rgba(0, 0, 0, 0.75);
 
   .artwork-play__icon {
     opacity: 1;
