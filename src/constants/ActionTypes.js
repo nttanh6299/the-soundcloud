@@ -12,3 +12,6 @@ export const ON_LOAD_START = 'ON_LOAD_START';
 export const ON_LOADED_METADATA = 'ON_LOADED_METADATA';
 export const ON_TIME_UPDATE = 'ON_TIME_UPDATE';
 export const ON_VOLUME_CHANGE = 'ON_VOLUME_CHANGE';
+
+// NAV
+export const ON_SONGS_SEARCH = 'ON_SONGS_SEARCH';

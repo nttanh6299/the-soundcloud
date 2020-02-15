@@ -7,3 +7,12 @@ export const IMAGE_SIZE = {
 export const DEBOUNCE_TIME = 400;
 
 export const SONG_LIMIT = 35;
+
+export const KEY_CODES = {
+  ENTER: 13
+};
+
+export const GENRES = {
+  house: 'house',
+  trap: 'trap'
+};

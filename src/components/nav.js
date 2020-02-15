@@ -1,9 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import NavSearch from './nav-search';
 
-const Nav = () => {
+const propTypes = {
+  onSongsSearch: PropTypes.func.isRequired
+};
+
+const Nav = ({ songs, onSongsSearch, fetchSongs }) => {
   return (
     <nav className="nav">
       <div className="nav__inner container">
@@ -14,11 +18,17 @@ const Nav = () => {
           </Link>
         </div>
         <div className="nav__section">
-          <NavSearch />
+          <NavSearch
+            onSearch={onSongsSearch}
+            songs={songs}
+            fetchSongs={fetchSongs}
+          />
         </div>
       </div>
     </nav>
   );
 };
+
+Nav.propTypes = propTypes;
 
 export default Nav;
