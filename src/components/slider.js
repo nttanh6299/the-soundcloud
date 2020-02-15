@@ -16,10 +16,10 @@ class Slider extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   value: 0,
-    //   isMouseDown: false
-    // };
+    this.state = {
+      value: 0,
+      isMouseDown: false
+    };
 
     this.slider = null;
 
@@ -27,20 +27,20 @@ class Slider extends Component {
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
 
-    //this.setStateDebounce = this.setStateDebounce.bind(this);
-    //this.emitChangeDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
+    this.setStateDebounce = this.setStateDebounce.bind(this);
+    this.emitChangeDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
   }
 
-  // setStateDebounce(props) {
-  //   this.setState({ ...props });
-  // }
+  setStateDebounce(props) {
+    this.setState({ ...props });
+  }
 
-  // componentDidUpdate(prevProps) {
-  //   const { value, isMouseDown } = this.state;
-  //   if (value !== prevProps.value && !isMouseDown) {
-  //     this.setState({ value: prevProps.value });
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { value, isMouseDown } = this.state;
+    if (value !== prevProps.value && !isMouseDown) {
+      this.setState({ value: prevProps.value });
+    }
+  }
 
   componentWillUnmount() {
     const { onMouseMove, onMouseUp } = this;
@@ -51,7 +51,7 @@ class Slider extends Component {
   onMouseDown(e) {
     const { onMouseMove, onMouseUp } = this;
 
-    //this.setState({ isMouseDown: true });
+    this.setState({ isMouseDown: true });
 
     onMouseMove(e);
 
@@ -66,22 +66,22 @@ class Slider extends Component {
     const value =
       Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /
       slider.offsetWidth;
-    onChange(value * max);
-    // this.setState({ value: value * max }, () => {
-    //   onChange(this.state.value);
-    // });
+
+    this.setState({ value: value * max }, () => {
+      onChange(this.state.value);
+    });
   }
 
   onMouseUp() {
     const { onMouseMove, onMouseUp } = this;
     window.removeEventListener('mousemove', onMouseMove);
     window.removeEventListener('mouseup', onMouseUp);
-    //this.emitChangeDebounce({ isMouseDown: false });
+    this.emitChangeDebounce({ isMouseDown: false });
   }
 
   render() {
-    const { max, value, className } = this.props;
-    //const { value } = this.state;
+    const { max, className } = this.props;
+    const { value } = this.state;
     const currentWidth = `${(value / max) * 100}%`;
 
     return (
