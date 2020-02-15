@@ -9,7 +9,8 @@ const propTypes = {
   nextUrl: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape({})),
   fetching: PropTypes.bool.isRequired,
-  fetchSongsNext: PropTypes.func.isRequired,
+  paramsUrl: PropTypes.shape({}),
+  page: PropTypes.number.isRequired,
   playingSongId: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
   playSong: PropTypes.func.isRequired,
@@ -19,29 +20,28 @@ const propTypes = {
 class Songs extends Component {
   componentDidMount() {
     const { fetchSongs } = this.props;
-    const params = {
-      client_id: TOKEN_API,
-      linked_partitioning: 1,
-      tags: 'house',
-      limit: 50,
-      offset: 0
-    };
-    fetchSongs('/tracks', params);
+    const params = { q: 'house' };
+    fetchSongs(1, params);
   }
 
   render() {
     const {
-      nextUrl,
       items,
       fetching,
-      fetchSongsNext,
+      paramsUrl,
+      page,
       playingSongId,
       isPlaying,
-      playSong
+      playSong,
+      fetchSongs
     } = this.props;
 
     return (
-      <InfiniteScroll fetchSongsNext={fetchSongsNext} nextUrl={nextUrl}>
+      <InfiniteScroll
+        fetchSongsNext={fetchSongs}
+        page={page}
+        paramsUrl={paramsUrl}
+      >
         <div className="songs songs--gray">
           <div className="container">
             <SongsRendered

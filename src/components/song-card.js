@@ -25,7 +25,11 @@ const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
         <div
           className="song-card__artwork"
           style={{
-            backgroundImage: `url(${getImageUrl(artworkUrl, IMAGE_SIZE.LARGE)})`
+            backgroundImage: `${
+              !!artworkUrl
+                ? `url(${getImageUrl(artworkUrl, IMAGE_SIZE.LARGE)})`
+                : ''
+            } `
           }}
         >
           <ArtworkPlay
@@ -39,7 +43,9 @@ const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
           <div
             className="song-card__avatar"
             style={{
-              backgroundImage: `url(${getImageUrl(avatarUrl)})`
+              backgroundImage: `${
+                !!avatarUrl ? `url(${getImageUrl(avatarUrl)})` : ''
+              }`
             }}
           ></div>
           <div className="song-card__details">

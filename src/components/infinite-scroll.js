@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  nextUrl: PropTypes.string,
+  paramsUrl: PropTypes.shape({}),
   fetchSongsNext: PropTypes.func.isRequired
 };
 
@@ -27,8 +27,8 @@ class InfiniteScroll extends Component {
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 200
     ) {
-      const { nextUrl, fetchSongsNext } = this.props;
-      fetchSongsNext(nextUrl);
+      const { fetchSongsNext, paramsUrl, page } = this.props;
+      fetchSongsNext(page + 1, paramsUrl);
     }
   }
 

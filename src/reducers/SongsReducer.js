@@ -7,7 +7,8 @@ import { removeDuplicateBy } from '../utils/helpers/removeDuplicateBy';
 const initialState = {
   fetching: false,
   items: [],
-  nextUrl: ''
+  paramsUrl: {},
+  page: 0
 };
 
 export default function songsReducer(state = initialState, action) {
@@ -22,7 +23,8 @@ export default function songsReducer(state = initialState, action) {
         ...state,
         fetching: false,
         items: removeDuplicateBy([...state.items, ...action.items], 'id'),
-        nextUrl: action.nextUrl
+        paramsUrl: action.paramsUrl,
+        page: action.page
       };
     default:
       return state;

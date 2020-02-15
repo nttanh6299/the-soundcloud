@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelize from 'camelize';
-import { API_URL } from '../constants/urlApi';
+import { API_URL, TOKEN_API } from '../constants/urlApi';
 
 // create instance normal
 const customInstance = axios.create({
@@ -53,7 +53,7 @@ export async function fetchApi(
     method: method,
     url: endpoint,
     data: body,
-    params: params,
+    params: { ...params, client_id: TOKEN_API },
     cancelToken: sourceToken
   });
 }

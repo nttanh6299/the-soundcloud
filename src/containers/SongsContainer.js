@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Songs from '../components/songs';
 import { getPlayingSongId, getIsPlaying } from '../selectors/CommonSelectors';
-import { fetchSongs, fetchSongsNext } from '../actions/SongsActions';
+import { fetchSongs } from '../actions/SongsActions';
 import { playSong } from '../actions/PlayerActions';
 
 const SongsContainer = props => <Songs {...props} />;
@@ -19,6 +19,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   fetchSongs,
-  fetchSongsNext,
   playSong
 })(SongsContainer);

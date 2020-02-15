@@ -5,3 +5,5 @@ export const IMAGE_SIZE = {
 };
 
 export const DEBOUNCE_TIME = 400;
+
+export const SONG_LIMIT = 35;

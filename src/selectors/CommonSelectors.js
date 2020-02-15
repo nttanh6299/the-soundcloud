@@ -5,6 +5,7 @@ export const getSongList = state => state.songs.items;
 export const getSongItemLength = createSelector(getSongList, songs =>
   songs ? songs.length : 0
 );
+export const getFetching = state => state.songs.fetching;
 
 //player
 export const getIsPlaying = state => state.player.isPlaying;
