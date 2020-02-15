@@ -2,6 +2,8 @@
   width: 205px;
   border: 1px solid $gray;
   margin: 10px;
+  position: relative;
+  z-index: 0;
 
   @include m-mobile {
     width: 100%;
@@ -26,7 +28,7 @@
   @include m-mobile {
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: 6px 0 6px 6px;
   }
 }
 
@@ -86,4 +88,17 @@
 
 .song-card__username {
   color: $darkLighter;
+}
+
+.song-card__mobile-event {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  @include m-mobile {
+    z-index: 1;
+  }
 }

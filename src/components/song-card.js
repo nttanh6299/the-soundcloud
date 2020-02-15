@@ -5,6 +5,7 @@ import { formatTitle } from '../utils/helpers/formatTitle';
 import { IMAGE_SIZE } from '../constants/GlobalConstants';
 import { Link } from 'react-router-dom';
 import ArtworkPlay from './artwork-play';
+import SongCardMobileEvent from './song-card-mobile-event';
 
 const propTypes = {
   song: PropTypes.shape({}),
@@ -51,6 +52,12 @@ const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
           </div>
         </div>
       </div>
+      <SongCardMobileEvent
+        playingSong={playingSong}
+        songIndex={songIndex}
+        isPlaying={isPlaying}
+        playSong={playSong}
+      />
     </div>
   );
 };

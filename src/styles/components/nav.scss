@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 
   @include m-mobile {
     height: $height-nav * 2;
