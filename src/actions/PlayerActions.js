@@ -17,10 +17,15 @@ import {
 import {
   getShuffle,
   getRepeat,
-  getPlayingSongIndex
+  getPlayingSongIndex,
+  getPlaylistPlaying
 } from '../selectors/CommonSelectors';
 
-export const playSong = songIndex => ({ type: PLAY_SONG, songIndex });
+export const playSong = (playlist, songIndex) => ({
+  type: PLAY_SONG,
+  playlist,
+  songIndex
+});
 
 export const onPlay = () => ({ type: ON_PLAY });
 
@@ -55,24 +60,26 @@ export const playNextSong = (nextWhileKeepRepeat = false) => (
   const state = getState();
   const shuffle = getShuffle(state);
   const repeat = getRepeat(state);
+  const playlistPlaying = getPlaylistPlaying(state);
 
   if (repeat && !nextWhileKeepRepeat) {
     const currentIndex = getPlayingSongIndex(state);
-    dispatch(playSong(currentIndex));
+    dispatch(playSong(playlistPlaying, currentIndex));
   } else if (shuffle && !repeat) {
     const randomIndex = getRandomIndex(state);
-    dispatch(playSong(randomIndex));
+    dispatch(playSong(playlistPlaying, randomIndex));
   } else {
     const nextIndex = getNextIndex(state);
-    dispatch(playSong(nextIndex));
+    dispatch(playSong(playlistPlaying, nextIndex));
   }
 };
 
 export const playPrevSong = () => (dispatch, getState) => {
   const state = getState();
+  const playlistPlaying = getPlaylistPlaying(state);
   const prevIndex = getPrevIndex(state);
   if (prevIndex !== null) {
-    dispatch(playSong(prevIndex));
+    dispatch(playSong(playlistPlaying, prevIndex));
   }
 };
 

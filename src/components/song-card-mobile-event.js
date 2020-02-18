@@ -5,14 +5,16 @@ const propTypes = {
   songIndex: PropTypes.number,
   playingSong: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired,
+  currentPlaylist: PropTypes.string
 };
 
 const SongCardMobileEvent = ({
   songIndex,
   playingSong,
   isPlaying,
-  playSong
+  playSong,
+  currentPlaylist
 }) => {
   function onTogglePlay() {
     const audio = document.getElementById('audio');
@@ -24,7 +26,7 @@ const SongCardMobileEvent = ({
   }
 
   function onPlaySong() {
-    playSong(songIndex);
+    playSong(currentPlaylist, songIndex);
   }
 
   return (

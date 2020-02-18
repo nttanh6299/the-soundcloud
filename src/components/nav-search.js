@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import { KEY_CODES } from '../constants/GlobalConstants';
 
 const propTypes = {
+  currentQuery: PropTypes.string,
   onSearch: PropTypes.func.isRequired
 };
 
-const NavSearch = ({ songs, onSearch, fetchSongs }) => {
+function NavSearch({ currentQuery, onSearch }) {
   function onKeyPress(e) {
     const code = e.which || e.keyCode;
     if (code === KEY_CODES.ENTER) {
       const value = e.currentTarget.value.trim();
-      if (value !== '') {
-        const { paramsUrl } = songs;
-        const params = { ...paramsUrl, q: value };
+      if (value !== '' && currentQuery !== value) {
+        window.scrollTo(0, 0);
         onSearch(value);
-        fetchSongs(1, params);
       }
     }
   }
@@ -31,7 +30,7 @@ const NavSearch = ({ songs, onSearch, fetchSongs }) => {
       />
     </div>
   );
-};
+}
 
 NavSearch.propTypes = propTypes;
 

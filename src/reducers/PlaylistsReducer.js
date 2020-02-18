@@ -11,7 +11,7 @@ const initialState = {
   page: 0
 };
 
-export default function songsReducer(state = initialState, action) {
+function playlist(state = initialState, action) {
   switch (action.type) {
     case FETCH_SONGS_REQUEST:
       return {
@@ -25,6 +25,19 @@ export default function songsReducer(state = initialState, action) {
         items: removeDuplicateBy([...state.items, ...action.items], 'id'),
         paramsUrl: action.paramsUrl,
         page: action.page
+      };
+    default:
+      return state;
+  }
+}
+
+export default function playlistsReducer(state = {}, action) {
+  switch (action.type) {
+    case FETCH_SONGS_REQUEST:
+    case FETCH_SONGS_SUCCESS:
+      return {
+        ...state,
+        [action.key]: playlist(state[action.key], action)
       };
     default:
       return state;

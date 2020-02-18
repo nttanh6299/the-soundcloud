@@ -1,15 +1,20 @@
 import { createSelector } from 'reselect';
 import { TOKEN_API } from '../constants/urlApi';
 import {
-  getSongList,
+  getPlaylistPlaying,
   getPlayingSongIndex,
-  getSongItemLength
+  getPlaylistItemsLength,
+  getPlaylists
 } from './CommonSelectors';
 
 export const getSong = createSelector(
-  getSongList,
+  getPlaylists,
+  getPlaylistPlaying,
   getPlayingSongIndex,
-  (songs, index) => songs[index]
+  (playlists, playlistPlaying, index) => {
+    const playlist = playlists[playlistPlaying];
+    return playlist ? playlist.items[index] : null;
+  }
 );
 
 export const getAudioUrl = createSelector(getSong, song =>
@@ -17,7 +22,7 @@ export const getAudioUrl = createSelector(getSong, song =>
 );
 
 export const getNextIndex = createSelector(
-  getSongItemLength,
+  getPlaylistItemsLength,
   getPlayingSongIndex,
   (length, index) => (index === length - 1 ? 0 : index + 1)
 );
@@ -27,7 +32,7 @@ export const getPrevIndex = createSelector(getPlayingSongIndex, index =>
 );
 
 export const getRandomIndex = createSelector(
-  getSongItemLength,
+  getPlaylistItemsLength,
   getPlayingSongIndex,
   (length, index) => {
     let newIndex = 0;

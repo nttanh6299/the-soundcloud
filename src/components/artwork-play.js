@@ -5,10 +5,17 @@ const propTypes = {
   songIndex: PropTypes.number,
   playingSong: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired,
+  currentPlaylist: PropTypes.string
 };
 
-const ArtworkPlay = ({ songIndex, playingSong, isPlaying, playSong }) => {
+const ArtworkPlay = ({
+  songIndex,
+  playingSong,
+  isPlaying,
+  playSong,
+  currentPlaylist
+}) => {
   function onTogglePlay() {
     const audio = document.getElementById('audio');
     if (isPlaying) {
@@ -19,7 +26,7 @@ const ArtworkPlay = ({ songIndex, playingSong, isPlaying, playSong }) => {
   }
 
   function onPlaySong() {
-    playSong(songIndex);
+    playSong(currentPlaylist, songIndex);
   }
 
   return (

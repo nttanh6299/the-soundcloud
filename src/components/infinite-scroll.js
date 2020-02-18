@@ -5,7 +5,8 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   paramsUrl: PropTypes.shape({}),
-  fetchSongsNext: PropTypes.func.isRequired
+  fetchSongsNext: PropTypes.func.isRequired,
+  currentPlaylist: PropTypes.string
 };
 
 class InfiniteScroll extends Component {
@@ -27,8 +28,8 @@ class InfiniteScroll extends Component {
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 200
     ) {
-      const { fetchSongsNext, paramsUrl, page } = this.props;
-      fetchSongsNext(page + 1, paramsUrl);
+      const { fetchSongsNext, paramsUrl, page, currentPlaylist } = this.props;
+      fetchSongsNext(currentPlaylist, page + 1, paramsUrl);
     }
   }
 

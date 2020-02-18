@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import songsReducer from './SongsReducer';
+import playlistsReducer from './PlaylistsReducer';
 import playerReducer from './PlayerReducer';
+import navReducer from './NavReducer';
 
 export default combineReducers({
-  songs: songsReducer,
-  player: playerReducer
+  playlists: playlistsReducer,
+  player: playerReducer,
+  nav: navReducer
 });

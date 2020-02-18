@@ -12,10 +12,18 @@ const propTypes = {
   playingSong: PropTypes.bool,
   songIndex: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired,
+  currentPlaylist: PropTypes.string
 };
 
-const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
+const SongCard = ({
+  song,
+  playingSong,
+  songIndex,
+  isPlaying,
+  playSong,
+  currentPlaylist
+}) => {
   const { title, artworkUrl, user } = song;
   const { avatarUrl, username } = user;
 
@@ -37,6 +45,7 @@ const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
             songIndex={songIndex}
             isPlaying={isPlaying}
             playSong={playSong}
+            currentPlaylist={currentPlaylist}
           />
         </div>
         <div className="song-card__body row">
@@ -63,6 +72,7 @@ const SongCard = ({ song, playingSong, songIndex, isPlaying, playSong }) => {
         songIndex={songIndex}
         isPlaying={isPlaying}
         playSong={playSong}
+        currentPlaylist={currentPlaylist}
       />
     </div>
   );

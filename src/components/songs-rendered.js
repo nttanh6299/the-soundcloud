@@ -5,11 +5,18 @@ import SongCard from './song-card';
 const propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({})),
   playingSongId: PropTypes.number,
-  isPlaying: PropTypes.bool.isRequired,
-  playSong: PropTypes.func.isRequired
+  isPlaying: PropTypes.bool,
+  playSong: PropTypes.func,
+  currentPlaylist: PropTypes.string
 };
 
-const SongsRendered = ({ songs, playingSongId, isPlaying, playSong }) => {
+const SongsRendered = ({
+  songs,
+  playingSongId,
+  isPlaying,
+  playSong,
+  currentPlaylist
+}) => {
   return (
     <div className="row row--hoz-center">
       {songs &&
@@ -21,6 +28,7 @@ const SongsRendered = ({ songs, playingSongId, isPlaying, playSong }) => {
             playingSong={playingSongId === song.id}
             isPlaying={isPlaying}
             playSong={playSong}
+            currentPlaylist={currentPlaylist}
           />
         ))}
     </div>

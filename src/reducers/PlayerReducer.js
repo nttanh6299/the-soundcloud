@@ -18,7 +18,8 @@ const initialState = {
   muted: false,
   volume: 1,
   repeat: false,
-  shuffle: false
+  shuffle: false,
+  playlist: ''
 };
 
 export default function playerReducer(state = initialState, action) {
@@ -27,6 +28,7 @@ export default function playerReducer(state = initialState, action) {
       return {
         ...state,
         playingSongIndex: action.songIndex,
+        playlist: action.playlist,
         isPlaying: true
       };
     case ON_LOAD_START:

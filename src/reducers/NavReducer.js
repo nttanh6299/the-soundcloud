@@ -4,7 +4,7 @@ import { GENRES } from '../constants/GlobalConstants';
 const initialState = {
   search: {
     currentQuery: GENRES.house || 'house',
-    querySearchs: []
+    querySearchs: [GENRES.house || 'house']
   }
 };
 

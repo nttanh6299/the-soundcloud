@@ -1,12 +1,12 @@
 import React from 'react';
-import Nav from './components/nav.js';
 import SongsContainer from './containers/SongsContainer';
 import PlayerContainer from './containers/PlayerContainer';
+import NavContainer from './containers/NavContainer';
 
 const App = () => {
   return (
     <React.Fragment>
-      <Nav />
+      <NavContainer />
       <SongsContainer />
       <PlayerContainer />
     </React.Fragment>
