@@ -18,7 +18,7 @@ const Main = () => {
           <App />
         </Router>
       </Provider>
-      <DevTools store={store} />
+      {/* <DevTools store={store} /> */}
     </React.Fragment>
   );
 };

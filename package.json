@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -44,6 +45,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "camelize": "^1.0.0",
+    "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
