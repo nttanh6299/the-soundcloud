@@ -1,6 +1,7 @@
 import {
   FETCH_SONGS_REQUEST,
-  FETCH_SONGS_SUCCESS
+  FETCH_SONGS_SUCCESS,
+  FETCH_SONGS_EMPTY
 } from '../constants/ActionTypes';
 import { removeDuplicateBy } from '../utils/helpers/removeDuplicateBy';
 
@@ -8,7 +9,8 @@ const initialState = {
   fetching: false,
   items: [],
   paramsUrl: {},
-  page: 0
+  page: 0,
+  isOutOfItem: false
 };
 
 function playlist(state = initialState, action) {
@@ -26,6 +28,12 @@ function playlist(state = initialState, action) {
         paramsUrl: action.paramsUrl,
         page: action.page
       };
+    case FETCH_SONGS_EMPTY:
+      return {
+        ...state,
+        isOutOfItem: true,
+        fetching: false
+      };
     default:
       return state;
   }
@@ -35,6 +43,7 @@ export default function playlistsReducer(state = {}, action) {
   switch (action.type) {
     case FETCH_SONGS_REQUEST:
     case FETCH_SONGS_SUCCESS:
+    case FETCH_SONGS_EMPTY:
       return {
         ...state,
         [action.key]: playlist(state[action.key], action)

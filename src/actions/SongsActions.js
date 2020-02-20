@@ -1,6 +1,7 @@
 import {
   FETCH_SONGS_REQUEST,
-  FETCH_SONGS_SUCCESS
+  FETCH_SONGS_SUCCESS,
+  FETCH_SONGS_EMPTY
 } from '../constants/ActionTypes';
 import { fetchApi } from '../utils/apiCaller';
 import { getPlaylists } from '../selectors/CommonSelectors';
@@ -15,6 +16,8 @@ const fetchSongsSuccess = (key, items, paramsUrl, page) => ({
   paramsUrl,
   page
 });
+
+const fetchSongsEmpty = key => ({ type: FETCH_SONGS_EMPTY, key });
 
 export const fetchSongs = (
   playlist,
@@ -32,7 +35,11 @@ export const fetchSongs = (
     //no linked partitioning
     const response = await fetchApi('/tracks', 'GET', null, params);
 
-    dispatch(fetchSongsSuccess(playlist, response, paramsUrl, page));
+    if (response.length > 0) {
+      dispatch(fetchSongsSuccess(playlist, response, paramsUrl, page));
+    } else {
+      dispatch(fetchSongsEmpty(playlist));
+    }
   } catch (err) {
     console.log(err);
   }
@@ -66,7 +73,9 @@ export const fetchSongsNext = (playlist, page, paramsUrl) => (
   const playlistIsFetching = playlistExists
     ? playlists[playlist].fetching
     : false;
-  if (!playlistIsFetching) {
+  const isOutOfItem = playlistExists ? playlists[playlist].isOutOfItem : true;
+
+  if (!playlistIsFetching && !isOutOfItem) {
     dispatch(fetchSongs(playlist, page, paramsUrl));
   }
 };
