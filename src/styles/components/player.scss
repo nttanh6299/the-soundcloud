@@ -81,6 +81,7 @@
   @include m-mobile {
     color: $white;
     width: auto;
+    cursor: default;
 
     & + & {
       margin-left: 20px;
