@@ -8,7 +8,6 @@ $gray: #ddd;
 
 $white: #fff;
 $orange: #eb772a;
-$orangeDark: lighten($orange, 5);
 
 $height-nav: 50px;
 
@@ -21,13 +20,13 @@ $height-nav: 50px;
 }
 
 body {
-  font-family: monospace;
+  font-family: Helvetica, sans-serif;
 }
 
 input,
 textarea,
 button {
-  font-family: monospace;
+  font-family: Helvetica, sans-serif;
 }
 
 a {
