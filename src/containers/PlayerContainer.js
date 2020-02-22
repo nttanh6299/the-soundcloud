@@ -15,6 +15,7 @@ import {
   playPrevSong,
   playNextSongWhileKeepRepeat
 } from '../actions/PlayerActions';
+import { onToggleShowHistory } from '../actions/HistoryActions';
 
 const PlayerContainer = props => <Player {...props} />;
 
@@ -39,5 +40,6 @@ export default connect(mapStateToProps, {
   onVolumeChange,
   playNextSong,
   playPrevSong,
-  playNextSongWhileKeepRepeat
+  playNextSongWhileKeepRepeat,
+  onToggleShowHistory
 })(PlayerContainer);

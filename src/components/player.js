@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Slider from './slider';
 import audio from './audio';
 import { formatSeconds } from '../utils/helpers/formatSeconds';
@@ -17,7 +16,8 @@ const propTypes = {
   onToggleRepeat: PropTypes.func.isRequired,
   onToggleShuffle: PropTypes.func.isRequired,
   playPrevSong: PropTypes.func.isRequired,
-  playNextSongWhileKeepRepeat: PropTypes.func.isRequired
+  playNextSongWhileKeepRepeat: PropTypes.func.isRequired,
+  onToggleShowHistory: PropTypes.func.isRequired
 };
 
 const Player = ({
@@ -30,7 +30,8 @@ const Player = ({
   onToggleRepeat,
   onToggleShuffle,
   playPrevSong,
-  playNextSongWhileKeepRepeat
+  playNextSongWhileKeepRepeat,
+  onToggleShowHistory
 }) => {
   if (!song) {
     return null;
@@ -61,12 +62,12 @@ const Player = ({
               style={{ backgroundImage: `url(${artworkUrl})` }}
             ></div>
             <div className="player__song__details">
-              <Link className="player__song__title" to="/">
+              <a className="player__song__title" href="#">
                 {formatTitle(title)}
-              </Link>
-              <Link className="player__song__username" to="/">
+              </a>
+              <a className="player__song__username" href="#">
                 {username}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -119,6 +120,13 @@ const Player = ({
             title="Repeat one"
           >
             <i className="fas fa-sync-alt"></i>
+          </div>
+          <div
+            className="player__button"
+            onClick={onToggleShowHistory}
+            title="History"
+          >
+            <i className="fas fa-list-alt"></i>
           </div>
           <div className="player__button" onClick={toggleMuted}>
             <i
