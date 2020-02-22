@@ -1,3 +1,13 @@
+.song-details {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  & + & {
+    margin-top: 10px;
+  }
+}
+
 .song-details__artwork {
   width: 40px;
   height: 40px;
@@ -6,7 +16,6 @@
   background-position: center center;
   background-repeat: no-repeat;
   margin-right: 10px;
-  transform: rotate(0);
 }
 
 .song-details__artwork--circle {

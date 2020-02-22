@@ -6,24 +6,28 @@ const propTypes = {
   backgroundCircle: PropTypes.bool,
   backgroundImage: PropTypes.string,
   title: PropTypes.string,
-  username: PropTypes.string
+  username: PropTypes.string,
+  children: PropTypes.node
 };
 
 const SongDetails = ({
-  className,
+  className = '',
   backgroundCircle,
   backgroundImage,
   title,
-  username
+  username,
+  children
 }) => {
   return (
-    <div className={className}>
+    <div className={'song-details ' + className}>
       <div
         className={`song-details__artwork ${
           backgroundCircle ? 'song-details__artwork--circle' : ''
         }`}
         style={{ backgroundImage: `url(${backgroundImage})` }}
-      ></div>
+      >
+        {children}
+      </div>
       <div className="song-details__details">
         <a className="song-details__title" href="#">
           {title}
