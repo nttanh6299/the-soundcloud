@@ -5,6 +5,7 @@
   bottom: 0;
   background-color: $white;
   transition: 0.3s;
+  z-index: 1000;
 
   @include m-mobile {
     background-color: $dark;
@@ -94,7 +95,7 @@
 }
 
 .player__song {
-  display: flex;
-  align-items: center;
-  width: 100%;
+  @include m-mobile {
+    margin-left: 10px;
+  }
 }
