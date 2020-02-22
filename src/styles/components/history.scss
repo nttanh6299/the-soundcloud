@@ -52,3 +52,9 @@
     color: $white;
   }
 }
+
+.history__songs {
+  height: calc(100vh - #{$height-nav * 2});
+  padding: 10px;
+  overflow-y: auto;
+}

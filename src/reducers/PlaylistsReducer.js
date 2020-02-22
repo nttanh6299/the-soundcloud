@@ -1,8 +1,10 @@
 import {
   FETCH_SONGS_REQUEST,
   FETCH_SONGS_SUCCESS,
-  FETCH_SONGS_EMPTY
+  FETCH_SONGS_EMPTY,
+  PLAY_SONG
 } from '../constants/ActionTypes';
+import { HISTORY_PLAYLIST } from '../constants/GlobalConstants';
 import { removeDuplicateBy } from '../utils/helpers/removeDuplicateBy';
 
 const initialState = {
@@ -34,6 +36,14 @@ function playlist(state = initialState, action) {
         isOutOfItem: true,
         fetching: false
       };
+    case PLAY_SONG:
+      if (action.playlist !== HISTORY_PLAYLIST) {
+        return {
+          ...state,
+          items: removeDuplicateBy([...state.items, action.song], 'id')
+        };
+      }
+      return state;
     default:
       return state;
   }
@@ -47,6 +57,14 @@ export default function playlistsReducer(state = {}, action) {
       return {
         ...state,
         [action.key]: playlist(state[action.key], action)
+      };
+    case PLAY_SONG:
+      return {
+        ...state,
+        [HISTORY_PLAYLIST]: playlist(state[HISTORY_PLAYLIST], {
+          ...action,
+          song: state[action.playlist].items[action.songIndex]
+        })
       };
     default:
       return state;

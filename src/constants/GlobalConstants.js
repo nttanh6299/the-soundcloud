@@ -16,3 +16,5 @@ export const GENRES = {
   house: 'house',
   trap: 'trap'
 };
+
+export const HISTORY_PLAYLIST = 'HISTORY_PLAYLIST';

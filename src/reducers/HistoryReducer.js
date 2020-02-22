@@ -1,7 +1,8 @@
-import { ON_TOGGLE_SHOW_HISTORY } from '../constants/ActionTypes';
+import { ON_TOGGLE_SHOW_HISTORY, PLAY_SONG } from '../constants/ActionTypes';
 
 const initialState = {
-  showHistory: false
+  showHistory: false,
+  playlists: []
 };
 
 function historyReducer(state = initialState, action) {
@@ -10,6 +11,14 @@ function historyReducer(state = initialState, action) {
       return {
         ...state,
         showHistory: !state.showHistory
+      };
+    case PLAY_SONG:
+      return {
+        ...state,
+        playlists: [
+          ...state.playlists,
+          { playlist: action.playlist, songIndex: action.songIndex }
+        ]
       };
     default:
       return state;
