@@ -1,0 +1,39 @@
+.song-details__artwork {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+  transform: rotate(0);
+}
+
+.song-details__artwork--circle {
+  border-radius: 50%;
+}
+
+.song-details__details {
+  overflow: hidden;
+}
+
+.song-details__username {
+  color: $darkLighter;
+}
+
+.song-details__title {
+  color: $dark;
+}
+
+.song-details__title,
+.song-details__username {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+
+  @include m-mobile {
+    color: $white;
+  }
+}
