@@ -18,10 +18,7 @@ export const getPlaylist = createSelector(
     };
   }
 );
-export const getPlaylistItemsLength = createSelector(
-  getPlaylist,
-  playlist => playlist.items.length
-);
+
 export const getFetching = createSelector(
   getPlaylist,
   playlist => playlist.fetching
@@ -45,5 +42,15 @@ export const getPlayingSongId = createSelector(
       return playlist.items[index].id;
     }
     return null;
+  }
+);
+
+export const getPlaylistItemsLength = createSelector(
+  getPlaylists,
+  getPlaylistPlaying,
+  (playlists, playlistPlaying) => {
+    return playlists.hasOwnProperty(playlistPlaying)
+      ? playlists[playlistPlaying].items.length
+      : 0;
   }
 );
