@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from './slider';
 import audio from './audio';
+import SongDetails from './song-details';
 import { formatSeconds } from '../utils/helpers/formatSeconds';
 import { formatTitle } from '../utils/helpers/formatTitle';
 import { volumeClassName } from '../utils/helpers/volumeClassName';
@@ -56,20 +57,13 @@ const Player = ({
     <div className="player">
       <div className="player__inner container">
         <div className="player__section player__section--song">
-          <div className="player__song">
-            <div
-              className="player__song__artwork player__song__artwork--circle"
-              style={{ backgroundImage: `url(${artworkUrl})` }}
-            ></div>
-            <div className="player__song__details">
-              <a className="player__song__title" href="#">
-                {formatTitle(title)}
-              </a>
-              <a className="player__song__username" href="#">
-                {username}
-              </a>
-            </div>
-          </div>
+          <SongDetails
+            className={'player__song'}
+            backgroundCircle={true}
+            backgroundImage={artworkUrl}
+            title={title}
+            username={username}
+          />
         </div>
         <div className="player__section">
           <div className="player__buttons">

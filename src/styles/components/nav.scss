@@ -40,20 +40,12 @@
   }
 }
 
-.nav__logo__icon {
-  display: inline-block;
-  text-align: center;
-  font-size: 30px;
-  color: $white;
-}
-
 .nav__logo__text {
   display: flex;
   align-items: center;
-  margin-left: 10px;
-  font-size: 22px;
-  letter-spacing: -1px;
+  font-size: 18px;
   color: $white;
+  text-transform: uppercase;
 
   &:hover {
     text-decoration: none;

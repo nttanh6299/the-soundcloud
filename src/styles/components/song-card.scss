@@ -1,6 +1,6 @@
 .song-card {
   width: 205px;
-  border: 1px solid $gray;
+
   margin: 10px;
   position: relative;
   z-index: 0;
@@ -8,15 +8,6 @@
   @include m-mobile {
     width: 100%;
     margin: 0;
-    border: 0;
-    border-bottom: 1px solid $gray;
-  }
-}
-
-.song-card--active {
-  border: 1px solid $dark;
-
-  @include m-mobile {
     border: 0;
     border-bottom: 1px solid $gray;
   }
@@ -33,11 +24,13 @@
 }
 
 .song-card__artwork {
+  width: 100%;
   height: 180px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: cover;
   margin-bottom: 10px;
+  background-color: $darkLight;
 
   @include m-mobile {
     background-size: cover;
@@ -50,6 +43,7 @@
 
 .song-card__body {
   overflow: hidden;
+  align-items: center;
 }
 
 .song-card__avatar {
@@ -78,7 +72,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: $dark;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 2px;
 
   @include m-mobile {
@@ -88,6 +82,7 @@
 
 .song-card__username {
   color: $darkLighter;
+  font-size: 12px;
 }
 
 .song-card__mobile-event {

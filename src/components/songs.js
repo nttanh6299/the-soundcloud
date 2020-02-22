@@ -54,8 +54,8 @@ class Songs extends Component {
         paramsUrl={paramsUrl}
         currentPlaylist={currentPlaylist}
       >
-        <div id="songs" className="songs songs--gray">
-          <div className="container">
+        <div className="container">
+          <div id="songs" className="songs songs--light">
             <SongsRendered
               songs={items}
               playingSongId={playingSongId}

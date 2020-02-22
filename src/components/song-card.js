@@ -27,7 +27,7 @@ const SongCard = ({
   const { avatarUrl, username } = user;
 
   return (
-    <div className={`song-card ${playingSong ? 'song-card--active' : ''}`}>
+    <div className="song-card">
       <div className="song-card__inner">
         <div
           className="song-card__artwork"

@@ -2,8 +2,9 @@
   position: relative;
   background-color: $darkLight;
   font-size: $ruler;
-  border-radius: $ruler;
   width: 320px;
+  display: flex;
+  align-items: center;
 
   @include m-mobile {
     width: 100%;
@@ -13,21 +14,23 @@
 
 .nav-search__icon,
 ::placeholder {
-  color: $gray;
+  color: $darkLighter;
 }
 
 .nav-search__icon {
-  position: absolute;
-  top: 12px;
-  left: 10px;
+  display: inline-block;
+  padding: 10px;
+  background-color: $dark;
+  margin: 1px;
+  cursor: pointer;
 }
 
 .nav-search__input {
-  padding: 10px 10px 10px 35px;
+  padding: 10px;
   font-size: $ruler;
   width: 100%;
   background-color: transparent;
   color: $white;
-  border: 0;
   outline: 0;
+  border: 0;
 }

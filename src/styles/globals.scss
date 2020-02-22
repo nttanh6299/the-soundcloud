@@ -9,7 +9,7 @@ $gray: #ddd;
 $white: #fff;
 $orange: #eb772a;
 
-$height-nav: 50px;
+$height-nav: 60px;
 
 *,
 :before,
@@ -21,6 +21,7 @@ $height-nav: 50px;
 
 body {
   font-family: Helvetica, sans-serif;
+  background-color: $gray;
 }
 
 input,

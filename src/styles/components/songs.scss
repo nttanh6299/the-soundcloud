@@ -1,6 +1,5 @@
 .songs {
   margin-top: $height-nav;
-  padding: 30px 0;
   overflow-x: auto;
 
   @include m-mobile {
@@ -9,6 +8,6 @@
   }
 }
 
-.songs--gray {
+.songs--light {
   background-color: $white;
 }
