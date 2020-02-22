@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { getImageUrl } from '../utils/helpers/getImageUrl';
 import { formatTitle } from '../utils/helpers/formatTitle';
 import { IMAGE_SIZE } from '../constants/GlobalConstants';
-import { Link } from 'react-router-dom';
 import ArtworkPlay from './artwork-play';
 import SongCardMobileEvent from './song-card-mobile-event';
 
@@ -58,12 +57,12 @@ const SongCard = ({
             }}
           ></div>
           <div className="song-card__details">
-            <Link className="song-card__title" to="/" title={title}>
+            <a className="song-card__title" href="#" title={title}>
               {formatTitle(title)}
-            </Link>
-            <Link className="song-card__username" to="/" title={username}>
+            </a>
+            <a className="song-card__username" href="#" title={username}>
               {username}
-            </Link>
+            </a>
           </div>
         </div>
       </div>
