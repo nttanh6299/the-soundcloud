@@ -1,0 +1,54 @@
+.history {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+
+  @include m-mobile {
+    display: none;
+  }
+}
+
+.history__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.history__main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background-color: $white;
+}
+
+.history__header {
+  height: $height-nav;
+  display: flex;
+  align-items: center;
+  background-color: $dark;
+  color: $white;
+}
+
+.history__header__title {
+  flex: 1;
+  font-size: 13px;
+  margin-left: 24px;
+}
+
+.history__header__close {
+  cursor: pointer;
+  font-size: 16px;
+  color: $darkLighter;
+  transition: 0.3;
+  padding: 18px;
+
+  &:hover {
+    color: $white;
+  }
+}
