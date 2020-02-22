@@ -16,7 +16,7 @@ const initialState = {
   isPlaying: false,
   playingSongIndex: -1,
   muted: false,
-  volume: 1,
+  volume: 0.5,
   repeat: false,
   shuffle: false,
   playlist: ''
