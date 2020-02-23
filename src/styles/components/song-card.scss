@@ -1,7 +1,7 @@
 .song-card {
-  width: 205px;
-
-  margin: 10px;
+  width: 190px; // (1200 - 12*5)/6
+  margin-right: 12px;
+  margin-bottom: 12px;
   position: relative;
   z-index: 0;
 
@@ -9,13 +9,15 @@
     width: 100%;
     margin: 0;
     border: 0;
-    border-bottom: 1px solid $gray;
+    border-bottom: 1px solid $darkLight;
+  }
+
+  &:nth-child(6n) {
+    margin-right: 0;
   }
 }
 
 .song-card__inner {
-  padding: 10px;
-
   @include m-mobile {
     display: flex;
     align-items: center;
@@ -30,7 +32,7 @@
   background-position: center center;
   background-size: cover;
   margin-bottom: 10px;
-  background-color: $darkLight;
+  background-color: $darker;
 
   @include m-mobile {
     background-size: cover;
@@ -71,7 +73,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: $dark;
+  color: $yellow;
   font-size: 13px;
   margin-bottom: 2px;
 
@@ -81,7 +83,7 @@
 }
 
 .song-card__username {
-  color: $darkLighter;
+  color: $gray;
   font-size: 12px;
 }
 

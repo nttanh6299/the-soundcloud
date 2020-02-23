@@ -55,7 +55,7 @@ class Songs extends Component {
         currentPlaylist={currentPlaylist}
       >
         <div className="container">
-          <div id="songs" className="songs songs--light">
+          <div id="songs" className="songs">
             <SongsRendered
               songs={items}
               playingSongId={playingSongId}

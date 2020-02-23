@@ -3,7 +3,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: $white;
   cursor: pointer;
 
   &:hover {
@@ -16,13 +15,13 @@
 .slider__bar {
   width: 100%;
   height: 2px;
-  background-color: $gray;
+  background-color: $darkLight;
 }
 
 .slider__bar__fill {
   position: relative;
   height: 100%;
-  background-color: $dark;
+  background-color: $yellow;
 }
 
 .slider__handle {
@@ -33,7 +32,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: $dark;
+  background-color: $yellow;
   cursor: pointer;
   transition: 0.2s;
   opacity: 0;

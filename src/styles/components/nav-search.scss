@@ -1,6 +1,6 @@
 .nav-search {
   position: relative;
-  background-color: $darkLight;
+  background-color: $dark;
   font-size: $ruler;
   width: 320px;
   display: flex;
@@ -20,7 +20,7 @@
 .nav-search__icon {
   display: inline-block;
   padding: 10px;
-  background-color: $dark;
+  background-color: $darker;
   margin: 1px;
   cursor: pointer;
 }
@@ -30,7 +30,7 @@
   font-size: $ruler;
   width: 100%;
   background-color: transparent;
-  color: $white;
+  color: $gray;
   outline: 0;
   border: 0;
 }

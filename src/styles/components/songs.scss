@@ -1,9 +1,10 @@
 .songs {
   margin-top: $height-nav;
+  padding: 12px 0;
   overflow-x: auto;
 
   @include m-mobile {
-    margin-top: $height-nav * 2;
+    margin-top: $height-nav * 1.6;
     padding: 0;
   }
 }

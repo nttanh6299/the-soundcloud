@@ -1,6 +1,7 @@
 $ruler: 16px;
 
 $dark: #333;
+$darker: #222;
 $darkLight: lighten($dark, 5);
 $darkLighter: lighten($dark, 25);
 
@@ -8,6 +9,7 @@ $gray: #ddd;
 
 $white: #fff;
 $orange: #eb772a;
+$yellow: #ffdd59;
 
 $height-nav: 60px;
 
@@ -21,7 +23,7 @@ $height-nav: 60px;
 
 body {
   font-family: Helvetica, sans-serif;
-  background-color: $gray;
+  background-color: $dark;
 }
 
 input,

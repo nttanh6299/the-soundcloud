@@ -1,5 +1,5 @@
 .loader {
-  margin: 20px 0 40px 0;
+  margin: 20px 0 $height-nav 0;
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
 .loader__rect {
   height: 40px;
   width: 6px;
-  background-color: $dark;
+  background-color: $gray;
   animation: stretch 1s infinite;
 
   & + & {

@@ -9,7 +9,7 @@
   z-index: 1;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
 
     .artwork-play__icon {
       opacity: 1;
@@ -18,7 +18,7 @@
 }
 
 .artwork-play--active {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.85);
 
   .artwork-play__icon {
     opacity: 1;
@@ -27,7 +27,7 @@
 
 .artwork-play__icon {
   opacity: 0;
-  color: $white;
+  color: $gray;
   font-size: 18px;
 
   @include m-mobile {

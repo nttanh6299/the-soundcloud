@@ -18,7 +18,7 @@ const SongsRendered = ({
   currentPlaylist
 }) => {
   return (
-    <div className="row row--hoz-center">
+    <div className="row">
       {songs &&
         songs.map((song, index) => (
           <SongCard

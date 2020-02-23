@@ -1,6 +1,6 @@
 .nav {
   height: $height-nav;
-  background-color: $dark;
+  background-color: $darker;
   color: $dark;
   width: 100%;
   border: 0;
@@ -12,7 +12,7 @@
   z-index: 1;
 
   @include m-mobile {
-    height: $height-nav * 2;
+    height: $height-nav * 1.6;
   }
 }
 
@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   font-size: 18px;
-  color: $white;
+  color: $yellow;
   text-transform: uppercase;
 
   &:hover {
@@ -53,8 +53,8 @@
 }
 
 @include m-mobile {
-  .nav__logo__icon,
   .nav__logo__text {
     font-size: 18px;
+    margin-top: 10px;
   }
 }

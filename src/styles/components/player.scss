@@ -3,13 +3,9 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  background-color: $white;
+  background-color: $darker;
   transition: 0.3s;
   z-index: 1000;
-
-  @include m-mobile {
-    background-color: $dark;
-  }
 }
 
 .player__inner {
@@ -20,6 +16,7 @@
 .player__section {
   display: flex;
   align-items: center;
+  color: $darkLighter;
 
   & + & {
     margin-left: 18px;
@@ -47,7 +44,7 @@
 }
 
 .player__section--time {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .player__section--slider,
@@ -71,7 +68,6 @@
 
 .player__button {
   cursor: pointer;
-  color: $dark;
   width: 30px;
   text-align: center;
 
@@ -80,7 +76,6 @@
   }
 
   @include m-mobile {
-    color: $white;
     width: auto;
     cursor: default;
 
@@ -91,7 +86,7 @@
 }
 
 .player__button--active {
-  color: $orange;
+  color: $yellow;
 }
 
 .player__song {
