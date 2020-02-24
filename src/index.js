@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import DevTools from './components/devtools';
+//import DevTools from './components/devtools';
 
 const store = configureStore();
 
@@ -15,7 +15,7 @@ const Main = () => {
       <Provider store={store}>
         <App />
       </Provider>
-      <DevTools store={store} />
+      {/* <DevTools store={store} /> */}
     </React.Fragment>
   );
 };
