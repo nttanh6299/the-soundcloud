@@ -32,8 +32,13 @@ class NavSearch extends Component {
 
     this.renderSelect = this.renderSelect.bind(this);
     this.setStateDebounce = this.setStateDebounce.bind(this);
+    this.filterOptionDebounce = this.filterOptionDebounce.bind(this);
 
-    this.emitActionDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
+    this.emitSetStateDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
+    this.emitChangeDebounce = debounce(
+      this.filterOptionDebounce,
+      DEBOUNCE_TIME
+    );
   }
 
   componentDidMount() {
@@ -42,6 +47,12 @@ class NavSearch extends Component {
 
   setStateDebounce(newState) {
     this.setState({ ...newState });
+  }
+
+  filterOptionDebounce(value = '') {
+    const { source = [] } = this.props;
+    const filteredOptions = source.filter(query => query.indexOf(value) !== -1);
+    this.setState({ filteredOptions, expand: true, focus: true });
   }
 
   onSearch() {
@@ -74,7 +85,7 @@ class NavSearch extends Component {
   }
 
   onBlur() {
-    this.emitActionDebounce({ expand: false, focus: false });
+    this.emitSetStateDebounce({ expand: false, focus: false });
   }
 
   onSelect(value) {
@@ -87,10 +98,7 @@ class NavSearch extends Component {
   }
 
   onChange(e) {
-    const { source = [] } = this.props;
-    const value = e.target.value || '';
-    const filteredOptions = source.filter(query => query.indexOf(value) !== -1);
-    this.emitActionDebounce({ filteredOptions, expand: true, focus: true });
+    this.emitChangeDebounce(e.target.value);
   }
 
   renderSelect(source) {
