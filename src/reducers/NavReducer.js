@@ -15,10 +15,10 @@ export default function navReducer(state = initialState, action) {
         ...state,
         search: {
           ...state.search,
-          currentQuery: action.querySearch,
+          currentQuery: action.querySearch.toLowerCase(),
           querySearchs: [
             ...state.search.querySearchs.filter(
-              query => query !== action.querySearch
+              query => query.toLowerCase() !== action.querySearch.toLowerCase()
             ),
             action.querySearch
           ]

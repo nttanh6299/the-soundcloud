@@ -51,7 +51,9 @@ class NavSearch extends Component {
 
   filterOptionDebounce(value = '') {
     const { source = [] } = this.props;
-    const filteredOptions = source.filter(query => query.indexOf(value) !== -1);
+    const filteredOptions = source.filter(
+      query => query.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    );
     this.setState({ filteredOptions, expand: true, focus: true });
   }
 
