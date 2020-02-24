@@ -16,7 +16,12 @@ export default function navReducer(state = initialState, action) {
         search: {
           ...state.search,
           currentQuery: action.querySearch,
-          querySearchs: [...state.search.querySearchs, action.querySearch]
+          querySearchs: [
+            ...state.search.querySearchs.filter(
+              query => query !== action.querySearch
+            ),
+            action.querySearch
+          ]
         }
       };
     default:

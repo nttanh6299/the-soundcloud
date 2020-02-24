@@ -2,7 +2,7 @@
   position: relative;
   background-color: $dark;
   font-size: $ruler;
-  width: 320px;
+  width: 392px;
   display: flex;
   align-items: center;
 
@@ -19,18 +19,66 @@
 
 .nav-search__icon {
   display: inline-block;
-  padding: 10px;
+  width: 50px;
+  padding: 10px 0;
+  text-align: center;
   background-color: $darker;
   margin: 1px;
   cursor: pointer;
 }
 
+.nav-search__clear {
+  display: none;
+  color: $darkLighter;
+  font-size: 11px;
+  padding: 4px 8px 4px 4px;
+  cursor: pointer;
+
+  @include m-mobile {
+    cursor: default;
+  }
+}
+
+.nav-search__clear--active {
+  display: inline-block;
+}
+
 .nav-search__input {
+  flex: 1;
   padding: 10px;
   font-size: $ruler;
-  width: 100%;
   background-color: transparent;
   color: $gray;
   outline: 0;
   border: 0;
+}
+
+.nav-search__history {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: $dark;
+  color: $darkLighter;
+  z-index: 999;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.nav-search__history__item {
+  padding: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $darker;
+  }
+}
+
+.nav-search__history__icon {
+  display: inline-block;
+  padding: 10px;
+}
+
+.nav-search__history__query {
+  padding: 10px;
 }

@@ -1,35 +1,149 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { KEY_CODES } from '../constants/GlobalConstants';
+import { debounce } from 'lodash';
+import { DEBOUNCE_TIME } from '../constants/GlobalConstants';
 
 const propTypes = {
   currentQuery: PropTypes.string,
-  onSearch: PropTypes.func.isRequired
+  source: PropTypes.arrayOf(PropTypes.string),
+  onSearch: PropTypes.func.isRequired,
+  placeHolder: PropTypes.string
 };
 
-function NavSearch({ currentQuery, onSearch }) {
-  function onKeyPress(e) {
+class NavSearch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      focus: false,
+      expand: false,
+      filteredOptions: []
+    };
+
+    this.search = null;
+    this.onSearch = this.onSearch.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+    this.onClear = this.onClear.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onSelect = this.onSelect.bind(this);
+    this.onChange = this.onChange.bind(this);
+
+    this.renderSelect = this.renderSelect.bind(this);
+    this.setStateDebounce = this.setStateDebounce.bind(this);
+
+    this.emitActionDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
+  }
+
+  componentDidMount() {
+    this.setState({ filteredOptions: [...this.props.source] });
+  }
+
+  setStateDebounce(newState) {
+    this.setState({ ...newState });
+  }
+
+  onSearch() {
+    const { search, props } = this;
+    const { currentQuery, onSearch } = props;
+
+    const value = search.value.trim();
+    if (value !== '' && currentQuery !== value) {
+      window.scrollTo(0, 0);
+      onSearch(value);
+    }
+    this.setState({ expand: false, focus: false });
+  }
+
+  onKeyPress(e) {
     const code = e.which || e.keyCode;
     if (code === KEY_CODES.ENTER) {
-      const value = e.currentTarget.value.trim();
-      if (value !== '' && currentQuery !== value) {
-        window.scrollTo(0, 0);
-        onSearch(value);
-      }
+      this.onSearch();
     }
   }
 
-  return (
-    <div className="nav-search">
-      <i className="nav-search__icon fas fa-search"></i>
-      <input
-        onKeyPress={onKeyPress}
-        className="nav-search__input"
-        type="text"
-        placeholder="Search"
-      />
-    </div>
-  );
+  onClear() {
+    const { search } = this;
+    search.value = '';
+    search.focus();
+  }
+
+  onFocus() {
+    this.setState({ focus: true, expand: true });
+  }
+
+  onBlur() {
+    this.emitActionDebounce({ expand: false, focus: false });
+  }
+
+  onSelect(value) {
+    const self = this;
+    const { search, onSearch } = self;
+    return function() {
+      search.value = value;
+      onSearch(value);
+    };
+  }
+
+  onChange(e) {
+    const { source = [] } = this.props;
+    const value = e.target.value || '';
+    const filteredOptions = source.filter(query => query.indexOf(value) !== -1);
+    this.emitActionDebounce({ filteredOptions, expand: true, focus: true });
+  }
+
+  renderSelect(source) {
+    const result = [];
+    for (let i = source.length - 1; i >= 0; i--) {
+      result.push(
+        <div
+          key={i}
+          onClick={this.onSelect(source[i])}
+          className="nav-search__history__item"
+        >
+          <i className="fas fa-history nav-search__history__icon"></i>
+          <span className="nav-search__history__query">{source[i]}</span>
+        </div>
+      );
+    }
+    return result;
+  }
+
+  render() {
+    const { focus, expand, filteredOptions } = this.state;
+    const { placeHolder = '' } = this.props;
+
+    return (
+      <div className="nav-search">
+        <i
+          onClick={this.onSearch}
+          className="nav-search__icon fas fa-search"
+        ></i>
+        <input
+          ref={node => (this.search = node)}
+          onKeyPress={this.onKeyPress}
+          onChange={this.onChange}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          className="nav-search__input"
+          type="text"
+          placeholder={placeHolder}
+        />
+        <i
+          onClick={this.onClear}
+          className={`fas fa-times-circle nav-search__clear ${
+            focus ? 'nav-search__clear--active' : ''
+          }`}
+        ></i>
+        {expand && (
+          <div className="nav-search__history">
+            {this.renderSelect(filteredOptions)}
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 NavSearch.propTypes = propTypes;

@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import NavSearch from './nav-search';
 
 const propTypes = {
-  nav: PropTypes.shape({}),
+  search: PropTypes.shape({}),
   onSongsSearch: PropTypes.func.isRequired
 };
 
-const Nav = ({ nav, onSongsSearch }) => {
-  const { search } = nav;
-  const { currentQuery } = search;
+const Nav = ({ search, onSongsSearch }) => {
+  const { currentQuery, querySearchs } = search;
 
   return (
     <nav className="nav">
@@ -20,7 +19,12 @@ const Nav = ({ nav, onSongsSearch }) => {
           </a>
         </div>
         <div className="nav__section">
-          <NavSearch currentQuery={currentQuery} onSearch={onSongsSearch} />
+          <NavSearch
+            currentQuery={currentQuery}
+            onSearch={onSongsSearch}
+            source={querySearchs}
+            placeHolder="Search"
+          />
         </div>
       </div>
     </nav>

@@ -7,7 +7,7 @@ const NavContainer = props => <Nav {...props} />;
 
 const mapDispatchToProps = state => {
   const { nav } = state;
-  return { nav };
+  return { ...nav };
 };
 
 export default connect(mapDispatchToProps, { onSongsSearch })(NavContainer);
