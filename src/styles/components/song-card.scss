@@ -21,7 +21,7 @@
   @include m-mobile {
     display: flex;
     align-items: center;
-    padding: 6px 0 6px 6px;
+    padding: 6px $ruler/1.4;
   }
 }
 
