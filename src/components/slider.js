@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { offsetLeft } from '../utils/helpers/offsetLeft';
 import { preventClick } from '../utils//helpers/preventClick';
-import { DEBOUNCE_TIME } from '../constants/GlobalConstants';
-import { debounce } from 'lodash';
 
 const propTypes = {
   max: PropTypes.number.isRequired,
@@ -16,30 +14,11 @@ class Slider extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      value: 0,
-      isMouseDown: false
-    };
-
     this.slider = null;
 
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
-
-    this.setStateDebounce = this.setStateDebounce.bind(this);
-    this.emitChangeDebounce = debounce(this.setStateDebounce, DEBOUNCE_TIME);
-  }
-
-  setStateDebounce(props) {
-    this.setState({ ...props });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { value, isMouseDown } = this.state;
-    if (value !== prevProps.value && !isMouseDown) {
-      this.setState({ value: prevProps.value });
-    }
   }
 
   componentWillUnmount() {
@@ -50,8 +29,6 @@ class Slider extends Component {
 
   onMouseDown(e) {
     const { onMouseMove, onMouseUp } = this;
-
-    this.setState({ isMouseDown: true });
 
     onMouseMove(e);
 
@@ -67,21 +44,17 @@ class Slider extends Component {
       Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /
       slider.offsetWidth;
 
-    this.setState({ value: value * max }, () => {
-      onChange(this.state.value);
-    });
+    onChange(value * max);
   }
 
   onMouseUp() {
     const { onMouseMove, onMouseUp } = this;
     window.removeEventListener('mousemove', onMouseMove);
     window.removeEventListener('mouseup', onMouseUp);
-    this.emitChangeDebounce({ isMouseDown: false });
   }
 
   render() {
-    const { max, className } = this.props;
-    const { value } = this.state;
+    const { max, value, className } = this.props;
     const currentWidth = `${(value / max) * 100}%`;
 
     return (
