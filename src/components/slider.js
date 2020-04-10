@@ -39,6 +39,7 @@ class Slider extends Component {
   onMouseMove(e) {
     const { slider, props } = this;
     const { max, onChange } = props;
+    //can use getBoundingClientRect method to get left property
     const left = offsetLeft(slider);
     const value =
       Math.min(Math.max(e.clientX - left, 0), slider.offsetWidth) /

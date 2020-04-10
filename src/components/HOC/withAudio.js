@@ -12,7 +12,7 @@ const propTypes = {
   playNextSong: PropTypes.func.isRequired
 };
 
-const audio = InnerComponent => {
+const withAudio = InnerComponent => {
   class Audio extends Component {
     constructor(props) {
       super(props);
@@ -153,4 +153,4 @@ const audio = InnerComponent => {
   return Audio;
 };
 
-export default audio;
+export default withAudio;

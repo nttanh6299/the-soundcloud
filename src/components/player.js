@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from './slider';
-import audio from './audio';
+import withAudio from './HOC/withAudio';
 import SongDetails from './song-details';
 import { formatSeconds } from '../utils/helpers/formatSeconds';
-import { formatTitle } from '../utils/helpers/formatTitle';
 import { volumeClassName } from '../utils/helpers/volumeClassName';
 
 const propTypes = {
@@ -138,4 +137,4 @@ const Player = ({
 
 Player.propTypes = propTypes;
 
-export default audio(Player);
+export default withAudio(Player);

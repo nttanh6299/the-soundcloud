@@ -18,7 +18,6 @@ export const getPlaylist = createSelector(
     };
   }
 );
-
 export const getFetching = createSelector(
   getPlaylist,
   playlist => playlist.fetching

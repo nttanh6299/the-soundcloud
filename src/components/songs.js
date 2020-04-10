@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from './loader';
 import SongsRendered from './songs-rendered';
-import InfiniteScroll from './infinite-scroll';
-import { GENRES } from '../constants/GlobalConstants';
+import withInfiniteScroll from './HOC/withInfiniteScroll';
 
 const propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({})),
@@ -38,39 +37,29 @@ class Songs extends Component {
     const {
       items,
       fetching,
-      paramsUrl,
-      page,
       playingSongId,
       isPlaying,
       playSong,
-      fetchSongsNext,
       currentPlaylist
     } = this.props;
 
     return (
-      <InfiniteScroll
-        fetchSongsNext={fetchSongsNext}
-        page={page}
-        paramsUrl={paramsUrl}
-        currentPlaylist={currentPlaylist}
-      >
-        <div className="container">
-          <div id="songs" className="songs">
-            <SongsRendered
-              songs={items}
-              playingSongId={playingSongId}
-              isPlaying={isPlaying}
-              playSong={playSong}
-              currentPlaylist={currentPlaylist}
-            />
-          </div>
-          <Loader loading={fetching} />
+      <div className="container">
+        <div id="songs" className="songs">
+          <SongsRendered
+            songs={items}
+            playingSongId={playingSongId}
+            isPlaying={isPlaying}
+            playSong={playSong}
+            currentPlaylist={currentPlaylist}
+          />
         </div>
-      </InfiniteScroll>
+        <Loader loading={fetching} />
+      </div>
     );
   }
 }
 
 Songs.propTypes = propTypes;
 
-export default Songs;
+export default withInfiniteScroll(Songs);
