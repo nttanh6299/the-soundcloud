@@ -43,7 +43,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "camelize": "^1.0.0",
     "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
